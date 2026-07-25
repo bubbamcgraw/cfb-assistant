@@ -111,6 +111,13 @@ main {
   margin-top: 0.6rem;
 }
 
+.filter-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-top: 0.7rem;
+}
+
 .chip {
   border: 1px solid var(--border);
   background: var(--chip-bg);
@@ -266,4 +273,101 @@ main {
   color: var(--muted);
   padding: 0 0.6rem 0.4rem;
   margin-top: -0.2rem;
+}
+
+.scheme-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.scheme-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+}
+
+.scheme-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.scheme-name {
+  font-weight: 600;
+  font-size: 1.02rem;
+}
+
+.side-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  color: #fff;
+}
+
+.side-badge.OFFENSE { background: var(--physical); }
+.side-badge.DEFENSE { background: var(--mental); }
+
+.scheme-desc {
+  margin: 0 0 0.5rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.35;
+}
+
+.scheme-slot {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.scheme-slot-archetypes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1;
+}
+
+.archetype-chip {
+  border: none;
+  background: var(--chip-bg);
+  color: var(--text);
+  text-align: left;
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.archetype-chip-desc {
+  font-size: 0.82rem;
+  color: var(--muted);
+  padding: 0 0.6rem 0.4rem;
+  margin-top: -0.2rem;
+}
+
+.flex-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 0.05rem 0.4rem;
+  margin-left: 0.3rem;
+}
+
+.flex-note {
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--muted);
+  padding: 0 0.6rem 0.4rem;
 }

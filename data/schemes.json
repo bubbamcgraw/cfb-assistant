@@ -1,0 +1,944 @@
+[
+  {
+    "name": "Air Raid",
+    "side": "OFFENSE",
+    "description": "Pass-heavy, no-huddle attack that spreads the field and airs it out on nearly every down.",
+    "tags": [
+      "pass-heavy",
+      "tempo",
+      "spread-formation"
+    ],
+    "slots": [
+      {
+        "position": "QB",
+        "archetypes": [
+          "Pocket Passer",
+          "Dual Threat",
+          "Backfield Creator"
+        ]
+      },
+      {
+        "position": "RB",
+        "archetypes": [
+          "Backfield Threat",
+          "North/South Receiver"
+        ]
+      },
+      {
+        "position": "WR",
+        "archetypes": [
+          "Speedster",
+          "Elusive Route Runner",
+          "Contested Specialist"
+        ]
+      },
+      {
+        "position": "TE",
+        "archetypes": [
+          "Physical Route Runner",
+          "Vertical Threat"
+        ]
+      },
+      {
+        "position": "OT",
+        "archetypes": [
+          "Pass Protector",
+          "Agile"
+        ]
+      },
+      {
+        "position": "OG",
+        "archetypes": [
+          "Pass Protector",
+          "Agile"
+        ]
+      },
+      {
+        "position": "C",
+        "archetypes": [
+          "Pass Protector",
+          "Agile"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Pro Style",
+    "side": "OFFENSE",
+    "description": "Balanced, disciplined pro-style football — run and pass in equal measure out of 1 RB, 1 TE personnel.",
+    "tags": [
+      "balanced",
+      "physical"
+    ],
+    "slots": [
+      {
+        "position": "QB",
+        "archetypes": [
+          "Pocket Passer",
+          "Backfield Creator"
+        ]
+      },
+      {
+        "position": "RB",
+        "archetypes": [
+          "Contact Seeker",
+          "North/South Receiver"
+        ]
+      },
+      {
+        "position": "FB",
+        "archetypes": [
+          "Utility",
+          "Blocking"
+        ]
+      },
+      {
+        "position": "WR",
+        "archetypes": [
+          "Contested Specialist",
+          "Speedster",
+          {
+            "name": "Physical Route Runner",
+            "note": "flex TE split out wide in 12 personnel",
+            "fromPosition": "TE"
+          }
+        ]
+      },
+      {
+        "position": "TE",
+        "archetypes": [
+          "Physical Route Runner",
+          "Vertical Threat"
+        ]
+      },
+      {
+        "position": "OT",
+        "archetypes": [
+          "Well Rounded",
+          "Pass Protector"
+        ]
+      },
+      {
+        "position": "OG",
+        "archetypes": [
+          "Well Rounded",
+          "Pass Protector"
+        ]
+      },
+      {
+        "position": "C",
+        "archetypes": [
+          "Well Rounded",
+          "Pass Protector"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Power Spread",
+    "side": "OFFENSE",
+    "description": "Downhill, physical run game out of spread formations — pound the ball between the tackles with play-action shots off it.",
+    "tags": [
+      "run-heavy",
+      "power",
+      "physical"
+    ],
+    "slots": [
+      {
+        "position": "QB",
+        "archetypes": [
+          "Pure Runner",
+          "Dual Threat"
+        ]
+      },
+      {
+        "position": "RB",
+        "archetypes": [
+          "Contact Seeker",
+          "Elusive Bruiser"
+        ]
+      },
+      {
+        "position": "WR",
+        "archetypes": [
+          "Contested Specialist",
+          "Gadget",
+          {
+            "name": "Gritty Possesion",
+            "note": "flex TE split out wide as extra blocker/possession target",
+            "fromPosition": "TE"
+          }
+        ]
+      },
+      {
+        "position": "TE",
+        "archetypes": [
+          "Gritty Possesion",
+          "Pure Blocker"
+        ]
+      },
+      {
+        "position": "OT",
+        "archetypes": [
+          "Raw Strength",
+          "Well Rounded"
+        ]
+      },
+      {
+        "position": "OG",
+        "archetypes": [
+          "Raw Strength",
+          "Well Rounded"
+        ]
+      },
+      {
+        "position": "C",
+        "archetypes": [
+          "Raw Strength",
+          "Well Rounded"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Multiple",
+    "side": "OFFENSE",
+    "description": "No fixed identity — shifts formations and personnel groupings to whatever the matchup calls for.",
+    "tags": [
+      "balanced",
+      "flexible"
+    ],
+    "slots": [
+      {
+        "position": "QB",
+        "archetypes": [
+          "Dual Threat",
+          "Pocket Passer",
+          "Pure Runner"
+        ]
+      },
+      {
+        "position": "RB",
+        "archetypes": [
+          "Contact Seeker",
+          "North/South Receiver",
+          "East/West Playmaker"
+        ]
+      },
+      {
+        "position": "FB",
+        "archetypes": [
+          "Utility",
+          "Blocking"
+        ]
+      },
+      {
+        "position": "WR",
+        "archetypes": [
+          "Contested Specialist",
+          "Speedster",
+          "Elusive Route Runner"
+        ]
+      },
+      {
+        "position": "TE",
+        "archetypes": [
+          "Physical Route Runner",
+          "Vertical Threat",
+          "Pure Blocker"
+        ]
+      },
+      {
+        "position": "OT",
+        "archetypes": [
+          "Well Rounded",
+          "Pass Protector",
+          "Raw Strength"
+        ]
+      },
+      {
+        "position": "OG",
+        "archetypes": [
+          "Well Rounded",
+          "Pass Protector",
+          "Raw Strength"
+        ]
+      },
+      {
+        "position": "C",
+        "archetypes": [
+          "Well Rounded",
+          "Pass Protector",
+          "Raw Strength"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Spread Option",
+    "side": "OFFENSE",
+    "description": "Run-first zone-read offense that reads the defensive end to option between a QB keep and a handoff.",
+    "tags": [
+      "run-heavy",
+      "option",
+      "spread-formation"
+    ],
+    "slots": [
+      {
+        "position": "QB",
+        "archetypes": [
+          "Pure Runner",
+          "Dual Threat"
+        ]
+      },
+      {
+        "position": "RB",
+        "archetypes": [
+          "Contact Seeker",
+          "East/West Playmaker"
+        ]
+      },
+      {
+        "position": "WR",
+        "archetypes": [
+          "Contested Specialist",
+          "Gadget"
+        ]
+      },
+      {
+        "position": "TE",
+        "archetypes": [
+          "Physical Route Runner",
+          "Pure Blocker"
+        ]
+      },
+      {
+        "position": "OT",
+        "archetypes": [
+          "Agile",
+          "Raw Strength"
+        ]
+      },
+      {
+        "position": "OG",
+        "archetypes": [
+          "Agile",
+          "Raw Strength"
+        ]
+      },
+      {
+        "position": "C",
+        "archetypes": [
+          "Agile",
+          "Raw Strength"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Pistol",
+    "side": "OFFENSE",
+    "description": "Shotgun spacing with a downhill run game — QB stands deeper, RB lines up directly behind for north-south power runs.",
+    "tags": [
+      "run-heavy",
+      "power",
+      "option"
+    ],
+    "slots": [
+      {
+        "position": "QB",
+        "archetypes": [
+          "Dual Threat",
+          "Pure Runner"
+        ]
+      },
+      {
+        "position": "RB",
+        "archetypes": [
+          "Contact Seeker",
+          "East/West Playmaker"
+        ]
+      },
+      {
+        "position": "WR",
+        "archetypes": [
+          "Elusive Route Runner",
+          "Speedster"
+        ]
+      },
+      {
+        "position": "TE",
+        "archetypes": [
+          "Physical Route Runner",
+          "Vertical Threat"
+        ]
+      },
+      {
+        "position": "OT",
+        "archetypes": [
+          "Well Rounded",
+          "Agile"
+        ]
+      },
+      {
+        "position": "OG",
+        "archetypes": [
+          "Well Rounded",
+          "Agile"
+        ]
+      },
+      {
+        "position": "C",
+        "archetypes": [
+          "Well Rounded",
+          "Agile"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Run and Shoot",
+    "side": "OFFENSE",
+    "description": "Four-wide, no-tight-end shotgun passing attack built on receivers reading coverage and adjusting routes on the fly.",
+    "tags": [
+      "pass-heavy",
+      "timing",
+      "spread-formation"
+    ],
+    "slots": [
+      {
+        "position": "QB",
+        "archetypes": [
+          "Backfield Creator",
+          "Pocket Passer"
+        ]
+      },
+      {
+        "position": "RB",
+        "archetypes": [
+          "East/West Playmaker",
+          "Backfield Threat"
+        ]
+      },
+      {
+        "position": "WR",
+        "archetypes": [
+          "Elusive Route Runner",
+          "Speedster",
+          "Gadget"
+        ]
+      },
+      {
+        "position": "OT",
+        "archetypes": [
+          "Pass Protector",
+          "Agile"
+        ]
+      },
+      {
+        "position": "OG",
+        "archetypes": [
+          "Pass Protector",
+          "Agile"
+        ]
+      },
+      {
+        "position": "C",
+        "archetypes": [
+          "Pass Protector",
+          "Agile"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Veer & Shoot",
+    "side": "OFFENSE",
+    "description": "Ultra-wide receiver splits, tempo, and RPOs — a blend of run-and-shoot, air raid, and spread run concepts.",
+    "tags": [
+      "pass-heavy",
+      "tempo",
+      "spread-formation"
+    ],
+    "slots": [
+      {
+        "position": "QB",
+        "archetypes": [
+          "Backfield Creator",
+          "Dual Threat"
+        ]
+      },
+      {
+        "position": "RB",
+        "archetypes": [
+          "East/West Playmaker",
+          "Backfield Threat"
+        ]
+      },
+      {
+        "position": "WR",
+        "archetypes": [
+          "Elusive Route Runner",
+          "Speedster",
+          "Gadget"
+        ]
+      },
+      {
+        "position": "TE",
+        "archetypes": [
+          "Vertical Threat",
+          "Physical Route Runner"
+        ]
+      },
+      {
+        "position": "OT",
+        "archetypes": [
+          "Agile",
+          "Pass Protector"
+        ]
+      },
+      {
+        "position": "OG",
+        "archetypes": [
+          "Agile",
+          "Pass Protector"
+        ]
+      },
+      {
+        "position": "C",
+        "archetypes": [
+          "Agile",
+          "Pass Protector"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Spread",
+    "side": "OFFENSE",
+    "description": "Shotgun spread that stretches the defense horizontally with 3-5 receiver sets to open running and passing lanes alike.",
+    "tags": [
+      "balanced",
+      "spread-formation",
+      "tempo"
+    ],
+    "slots": [
+      {
+        "position": "QB",
+        "archetypes": [
+          "Dual Threat",
+          "Backfield Creator"
+        ]
+      },
+      {
+        "position": "RB",
+        "archetypes": [
+          "East/West Playmaker",
+          "Backfield Threat"
+        ]
+      },
+      {
+        "position": "WR",
+        "archetypes": [
+          "Elusive Route Runner",
+          "Speedster",
+          "Gadget"
+        ]
+      },
+      {
+        "position": "TE",
+        "archetypes": [
+          "Vertical Threat",
+          "Physical Route Runner"
+        ]
+      },
+      {
+        "position": "OT",
+        "archetypes": [
+          "Agile",
+          "Well Rounded"
+        ]
+      },
+      {
+        "position": "OG",
+        "archetypes": [
+          "Agile",
+          "Well Rounded"
+        ]
+      },
+      {
+        "position": "C",
+        "archetypes": [
+          "Agile",
+          "Well Rounded"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "4-3",
+    "side": "DEFENSE",
+    "description": "Four down linemen, three linebackers — a balanced, classic front against both run and pass.",
+    "tags": [
+      "balanced",
+      "run-stopping"
+    ],
+    "slots": [
+      {
+        "position": "LEDGE",
+        "archetypes": [
+          "Edge Setter",
+          "Speed Rusher"
+        ]
+      },
+      {
+        "position": "DT",
+        "archetypes": [
+          "Gap Specialist",
+          "Power Rusher"
+        ]
+      },
+      {
+        "position": "DT",
+        "archetypes": [
+          "Power Rusher",
+          "Pure Power"
+        ]
+      },
+      {
+        "position": "REDGE",
+        "archetypes": [
+          "Speed Rusher",
+          "Edge Setter"
+        ]
+      },
+      {
+        "position": "SAM",
+        "archetypes": [
+          "Thumper",
+          "Lurker"
+        ]
+      },
+      {
+        "position": "MIKE",
+        "archetypes": [
+          "Signal Caller",
+          "Thumper"
+        ]
+      },
+      {
+        "position": "WILL",
+        "archetypes": [
+          "Lurker",
+          "Signal Caller"
+        ]
+      },
+      {
+        "position": "CB",
+        "archetypes": [
+          "Bump and Run",
+          "Boundary"
+        ]
+      },
+      {
+        "position": "CB",
+        "archetypes": [
+          "Boundary",
+          "Bump and Run"
+        ]
+      },
+      {
+        "position": "FS",
+        "archetypes": [
+          "Coverage Specialist",
+          "Hybrid"
+        ]
+      },
+      {
+        "position": "SS",
+        "archetypes": [
+          "Box Specialist",
+          "Hybrid"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "3-4",
+    "side": "DEFENSE",
+    "description": "Three down linemen who two-gap, four linebackers including two edge rushers — versatile and disguise-friendly.",
+    "tags": [
+      "pass-rush",
+      "versatile"
+    ],
+    "slots": [
+      {
+        "position": "DT",
+        "archetypes": [
+          "Pure Power",
+          "Gap Specialist"
+        ]
+      },
+      {
+        "position": "LEDGE",
+        "archetypes": [
+          "Edge Setter",
+          "Power Rusher"
+        ]
+      },
+      {
+        "position": "REDGE",
+        "archetypes": [
+          "Edge Setter",
+          "Power Rusher"
+        ]
+      },
+      {
+        "position": "SAM",
+        "archetypes": [
+          "Thumper",
+          "Lurker"
+        ]
+      },
+      {
+        "position": "SAM",
+        "archetypes": [
+          {
+            "name": "Lurker",
+            "note": "weakside 'Jack' rusher — more range/coverage than strongside Sam"
+          },
+          "Thumper"
+        ]
+      },
+      {
+        "position": "MIKE",
+        "archetypes": [
+          "Signal Caller",
+          "Thumper"
+        ]
+      },
+      {
+        "position": "WILL",
+        "archetypes": [
+          "Lurker",
+          "Signal Caller"
+        ]
+      },
+      {
+        "position": "CB",
+        "archetypes": [
+          "Bump and Run",
+          "Boundary"
+        ]
+      },
+      {
+        "position": "CB",
+        "archetypes": [
+          "Boundary",
+          "Bump and Run"
+        ]
+      },
+      {
+        "position": "FS",
+        "archetypes": [
+          "Coverage Specialist",
+          "Hybrid"
+        ]
+      },
+      {
+        "position": "SS",
+        "archetypes": [
+          "Box Specialist",
+          "Hybrid"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "3-3-5",
+    "side": "DEFENSE",
+    "description": "Three down linemen, three linebackers, five DBs — favors quick gap-shooters and extra coverage against spread offenses.",
+    "tags": [
+      "coverage-heavy",
+      "nickel-heavy",
+      "gap-shooting"
+    ],
+    "slots": [
+      {
+        "position": "LEDGE",
+        "archetypes": [
+          "Speed Rusher",
+          "Edge Setter"
+        ]
+      },
+      {
+        "position": "DT",
+        "archetypes": [
+          "Gap Specialist",
+          "Pure Power"
+        ]
+      },
+      {
+        "position": "REDGE",
+        "archetypes": [
+          "Speed Rusher",
+          "Edge Setter"
+        ]
+      },
+      {
+        "position": "SAM",
+        "archetypes": [
+          "Thumper",
+          "Lurker"
+        ]
+      },
+      {
+        "position": "MIKE",
+        "archetypes": [
+          "Signal Caller",
+          "Thumper"
+        ]
+      },
+      {
+        "position": "WILL",
+        "archetypes": [
+          "Lurker",
+          "Signal Caller"
+        ]
+      },
+      {
+        "position": "CB",
+        "archetypes": [
+          "Boundary",
+          "Bump and Run"
+        ]
+      },
+      {
+        "position": "CB",
+        "archetypes": [
+          "Field",
+          "Bump and Run"
+        ]
+      },
+      {
+        "position": "CB",
+        "archetypes": [
+          {
+            "name": "Zone",
+            "note": "nickel/Spur — slot corner-safety hybrid"
+          },
+          "Bump and Run"
+        ]
+      },
+      {
+        "position": "FS",
+        "archetypes": [
+          "Coverage Specialist",
+          "Hybrid"
+        ]
+      },
+      {
+        "position": "SS",
+        "archetypes": [
+          "Box Specialist",
+          "Hybrid"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "4-2-5",
+    "side": "DEFENSE",
+    "description": "Four down linemen, two linebackers, five DBs — built to defend modern spread passing games without sacrificing the run front.",
+    "tags": [
+      "coverage-heavy",
+      "nickel-heavy",
+      "balanced"
+    ],
+    "slots": [
+      {
+        "position": "LEDGE",
+        "archetypes": [
+          "Speed Rusher",
+          "Edge Setter"
+        ]
+      },
+      {
+        "position": "DT",
+        "archetypes": [
+          "Pure Power",
+          "Gap Specialist"
+        ]
+      },
+      {
+        "position": "DT",
+        "archetypes": [
+          "Power Rusher",
+          "Speed Rusher"
+        ]
+      },
+      {
+        "position": "REDGE",
+        "archetypes": [
+          "Speed Rusher",
+          "Edge Setter"
+        ]
+      },
+      {
+        "position": "MIKE",
+        "archetypes": [
+          "Signal Caller",
+          "Thumper"
+        ]
+      },
+      {
+        "position": "SAM",
+        "archetypes": [
+          {
+            "name": "Lurker",
+            "note": "hybrid athletic backer/big-safety body"
+          },
+          "Thumper"
+        ]
+      },
+      {
+        "position": "CB",
+        "archetypes": [
+          "Boundary",
+          "Bump and Run"
+        ]
+      },
+      {
+        "position": "CB",
+        "archetypes": [
+          "Field",
+          "Bump and Run"
+        ]
+      },
+      {
+        "position": "CB",
+        "archetypes": [
+          {
+            "name": "Zone",
+            "note": "nickel slot corner"
+          },
+          "Bump and Run"
+        ]
+      },
+      {
+        "position": "FS",
+        "archetypes": [
+          "Coverage Specialist",
+          "Hybrid"
+        ]
+      },
+      {
+        "position": "SS",
+        "archetypes": [
+          "Box Specialist",
+          "Hybrid"
+        ]
+      }
+    ]
+  }
+]

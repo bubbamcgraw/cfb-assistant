@@ -12,6 +12,7 @@
   <nav class="tabs">
     <button class="tab-btn active" data-view="abilities">Abilities</button>
     <button class="tab-btn" data-view="archetypes">Archetypes</button>
+    <button class="tab-btn" data-view="schemes">Schemes</button>
   </nav>
 </header>
 
@@ -33,6 +34,18 @@
     </div>
     <div id="archetype-results-count" class="results-count"></div>
     <div id="archetype-list" class="archetype-list"></div>
+  </section>
+
+  <section id="schemes-view" class="view hidden">
+    <div class="controls">
+      <input id="scheme-search" type="search" placeholder="Search schemes, or describe what you want to run..." autocomplete="off">
+      <div class="filter-label">What do you want to run?</div>
+      <div class="filter-row" id="intent-filters"></div>
+      <div class="filter-row" id="side-filters"></div>
+      <div class="filter-row" id="scheme-position-filters"></div>
+    </div>
+    <div id="scheme-results-count" class="results-count"></div>
+    <div id="scheme-list" class="scheme-list"></div>
   </section>
 </main>
 
