@@ -1,0 +1,269 @@
+:root {
+  --bg: #f5f6f8;
+  --card-bg: #ffffff;
+  --text: #1a1d21;
+  --muted: #6b7280;
+  --border: #e2e5ea;
+  --accent: #7c3aed;
+  --physical: #2563eb;
+  --mental: #d97706;
+  --chip-bg: #eef0f4;
+  --chip-active-bg: #1a1d21;
+  --chip-active-text: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14161a;
+    --card-bg: #1e2126;
+    --text: #f0f1f3;
+    --muted: #9aa1ab;
+    --border: #2c3036;
+    --accent: #a78bfa;
+    --physical: #60a5fa;
+    --mental: #fbbf24;
+    --chip-bg: #2a2e35;
+    --chip-active-bg: #f0f1f3;
+    --chip-active-text: #14161a;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+header {
+  padding: 1.25rem 1rem 0.75rem;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.tab-btn {
+  border: 1px solid var(--border);
+  background: var(--chip-bg);
+  color: var(--text);
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  background: var(--chip-active-bg);
+  color: var(--chip-active-text);
+  border-color: var(--chip-active-bg);
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1rem 2rem;
+}
+
+.view.hidden {
+  display: none;
+}
+
+.controls {
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  padding: 0.75rem 0;
+  z-index: 10;
+}
+
+#search {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  font-size: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card-bg);
+  color: var(--text);
+}
+
+#search:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+}
+
+.chip {
+  border: 1px solid var(--border);
+  background: var(--chip-bg);
+  color: var(--text);
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.chip.active {
+  background: var(--chip-active-bg);
+  color: var(--chip-active-text);
+  border-color: var(--chip-active-bg);
+}
+
+.results-count {
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin: 0.25rem 0 0.5rem;
+}
+
+.ability-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.ability-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+}
+
+.ability-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.ability-name {
+  font-weight: 600;
+  font-size: 1.02rem;
+}
+
+.type-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.type-badge.PHYSICAL { background: var(--physical); }
+.type-badge.MENTAL { background: var(--mental); }
+
+.ability-desc {
+  margin: 0.35rem 0 0.5rem;
+  color: var(--text);
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.tag {
+  font-size: 0.7rem;
+  color: var(--muted);
+  background: var(--chip-bg);
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--muted);
+  padding: 2rem 1rem;
+}
+
+.archetype-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.archetype-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+}
+
+.archetype-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.archetype-name {
+  font-weight: 600;
+  font-size: 1.02rem;
+}
+
+.position-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+}
+
+.position-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.archetype-abilities {
+  margin-top: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.ability-chip {
+  border: none;
+  background: var(--chip-bg);
+  color: var(--text);
+  text-align: left;
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ability-chip-desc {
+  font-size: 0.82rem;
+  color: var(--muted);
+  padding: 0 0.6rem 0.4rem;
+  margin-top: -0.2rem;
+}

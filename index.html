@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CFB Companion</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <h1>CFB Companion</h1>
+  <nav class="tabs">
+    <button class="tab-btn active" data-view="abilities">Abilities</button>
+    <button class="tab-btn" data-view="archetypes">Archetypes</button>
+  </nav>
+</header>
+
+<main>
+  <section id="abilities-view" class="view">
+    <div class="controls">
+      <input id="ability-search" type="search" placeholder="Search abilities..." autocomplete="off">
+      <div class="filter-row" id="type-filters"></div>
+      <div class="filter-row" id="tag-filters"></div>
+    </div>
+    <div id="ability-results-count" class="results-count"></div>
+    <div id="ability-list" class="ability-list"></div>
+  </section>
+
+  <section id="archetypes-view" class="view hidden">
+    <div class="controls">
+      <input id="archetype-search" type="search" placeholder="Search archetypes..." autocomplete="off">
+      <div class="filter-row" id="position-filters"></div>
+    </div>
+    <div id="archetype-results-count" class="results-count"></div>
+    <div id="archetype-list" class="archetype-list"></div>
+  </section>
+</main>
+
+<script src="js/app.js"></script>
+</body>
+</html>
