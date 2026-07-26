@@ -43,16 +43,16 @@ interface SchemeIntent {
 }
 
 const SCHEME_INTENTS: SchemeIntent[] = [
-  { label: "Pound the ball", tags: ["run-heavy", "power"] },
   { label: "Air it out", tags: ["pass-heavy"] },
-  { label: "Run the option", tags: ["option"] },
-  { label: "Go fast (tempo)", tags: ["tempo"] },
   { label: "Balanced, do-everything", tags: ["balanced", "flexible"] },
-  { label: "Spread it out", tags: ["spread-formation"] },
-  { label: "Stop the run", tags: ["run-stopping"] },
   { label: "Get after the passer", tags: ["pass-rush"] },
+  { label: "Go fast (tempo)", tags: ["tempo"] },
   { label: "Lock down the pass", tags: ["coverage-heavy"] },
   { label: "Match up vs. spread", tags: ["nickel-heavy"] },
+  { label: "Pound the ball", tags: ["run-heavy", "power"] },
+  { label: "Run the option", tags: ["option"] },
+  { label: "Spread it out", tags: ["spread-formation"] },
+  { label: "Stop the run", tags: ["run-stopping"] },
 ];
 
 const THEME_ICONS: Record<ThemeMode, string> = { auto: "◐", light: "☀", dark: "☾" };
@@ -298,7 +298,7 @@ function restoreState(): void {
 // --- Abilities view ---
 
 function renderTypeFilters(): void {
-  const types = [...new Set(abilities.map((a) => a.type))];
+  const types = [...new Set(abilities.map((a) => a.type))].sort();
   typeFiltersEl.innerHTML = "";
   types.forEach((type) => {
     const chip = document.createElement("button");
@@ -358,6 +358,11 @@ function renderAbilities(): void {
     abilityListEl.innerHTML = `<div class="empty-state">No abilities match your search.</div>`;
     return;
   }
+
+  filtered.sort((a, b) => {
+    const groupCompare = groupKeyForAbility(a).localeCompare(groupKeyForAbility(b));
+    return groupCompare !== 0 ? groupCompare : a.name.localeCompare(b.name);
+  });
 
   let lastGroup: string | null = null;
 
@@ -427,7 +432,7 @@ abilityClearFilters.addEventListener("click", () => {
 // --- Archetypes view ---
 
 function renderPositionFilters(): void {
-  const positions = [...new Set(archetypes.flatMap((a) => a.positions))];
+  const positions = [...new Set(archetypes.flatMap((a) => a.positions))].sort();
   positionFiltersEl.innerHTML = "";
   positions.forEach((position) => {
     const chip = document.createElement("button");
@@ -461,6 +466,11 @@ function renderArchetypes(): void {
     archetypeListEl.innerHTML = `<div class="empty-state">No archetypes match your search.</div>`;
     return;
   }
+
+  filtered.sort((a, b) => {
+    const groupCompare = a.positions[0].localeCompare(b.positions[0]);
+    return groupCompare !== 0 ? groupCompare : a.name.localeCompare(b.name);
+  });
 
   let lastGroup: string | null = null;
 
@@ -573,7 +583,7 @@ function renderIntentFilters(): void {
 }
 
 function renderSideFilters(): void {
-  const sides = [...new Set(schemes.map((s) => s.side))];
+  const sides = [...new Set(schemes.map((s) => s.side))].sort();
   sideFiltersEl.innerHTML = "";
   sides.forEach((side) => {
     const chip = document.createElement("button");
@@ -591,7 +601,7 @@ function renderSideFilters(): void {
 
 function renderSchemePositionFilters(): void {
   const pool = activeSide ? schemes.filter((s) => s.side === activeSide) : schemes;
-  const positions = [...new Set(pool.flatMap((s) => s.slots.map((slot) => slot.position)))];
+  const positions = [...new Set(pool.flatMap((s) => s.slots.map((slot) => slot.position)))].sort();
 
   if (activeSchemePosition && !positions.includes(activeSchemePosition)) activeSchemePosition = null;
 
@@ -632,6 +642,8 @@ function renderSchemes(): void {
     schemeListEl.innerHTML = `<div class="empty-state">No schemes match your search.</div>`;
     return;
   }
+
+  filtered.sort((a, b) => a.name.localeCompare(b.name));
 
   schemeListEl.innerHTML = filtered
     .map(
