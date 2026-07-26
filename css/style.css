@@ -28,6 +28,34 @@
   }
 }
 
+:root[data-theme="dark"] {
+  --bg: #14161a;
+  --card-bg: #1e2126;
+  --text: #f0f1f3;
+  --muted: #9aa1ab;
+  --border: #2c3036;
+  --accent: #a78bfa;
+  --physical: #60a5fa;
+  --mental: #fbbf24;
+  --chip-bg: #2a2e35;
+  --chip-active-bg: #f0f1f3;
+  --chip-active-text: #14161a;
+}
+
+:root[data-theme="light"] {
+  --bg: #f5f6f8;
+  --card-bg: #ffffff;
+  --text: #1a1d21;
+  --muted: #6b7280;
+  --border: #e2e5ea;
+  --accent: #7c3aed;
+  --physical: #2563eb;
+  --mental: #d97706;
+  --chip-bg: #eef0f4;
+  --chip-active-bg: #1a1d21;
+  --chip-active-text: #ffffff;
+}
+
 * { box-sizing: border-box; }
 
 body {
@@ -37,21 +65,27 @@ body {
   color: var(--text);
 }
 
-header {
-  padding: 1.25rem 1rem 0.75rem;
+.site-header {
+  padding: 1.1rem 1rem 0.5rem;
   text-align: center;
 }
 
-header h1 {
+.site-header h1 {
   margin: 0;
   font-size: 1.4rem;
 }
 
 .tabs {
+  position: sticky;
+  top: 0;
+  z-index: 20;
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 0.5rem;
-  margin-top: 0.75rem;
+  padding: 0.6rem 1rem;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
 }
 
 .tab-btn {
@@ -71,6 +105,19 @@ header h1 {
   border-color: var(--chip-active-bg);
 }
 
+.theme-toggle {
+  margin-left: auto;
+  border: 1px solid var(--border);
+  background: var(--chip-bg);
+  color: var(--text);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
 main {
   max-width: 720px;
   margin: 0 auto;
@@ -83,7 +130,7 @@ main {
 
 .controls {
   position: sticky;
-  top: 0;
+  top: 3.2rem;
   background: var(--bg);
   padding: 0.75rem 0;
   z-index: 10;
@@ -240,6 +287,26 @@ main {
   text-align: center;
   color: var(--muted);
   padding: 2rem 1rem;
+}
+
+mark {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 3px;
+  padding: 0 0.15rem;
+}
+
+.section-header {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 1rem 0 0.4rem;
+}
+
+.section-header:first-child {
+  margin-top: 0;
 }
 
 .archetype-list {

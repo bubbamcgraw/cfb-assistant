@@ -15,14 +15,15 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<header>
+<header class="site-header">
   <h1>CFB Companion</h1>
-  <nav class="tabs">
-    <button class="tab-btn active" data-view="abilities">Abilities</button>
-    <button class="tab-btn" data-view="archetypes">Archetypes</button>
-    <button class="tab-btn" data-view="schemes">Schemes</button>
-  </nav>
 </header>
+<nav class="tabs">
+  <button class="tab-btn active" data-view="abilities">Abilities</button>
+  <button class="tab-btn" data-view="archetypes">Archetypes</button>
+  <button class="tab-btn" data-view="schemes">Schemes</button>
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle color theme">&#9680;</button>
+</nav>
 
 <main>
   <section id="abilities-view" class="view">

@@ -1,6 +1,7 @@
 type AbilityType = "PHYSICAL" | "MENTAL";
 type Side = "OFFENSE" | "DEFENSE";
 type View = "abilities" | "archetypes" | "schemes";
+type ThemeMode = "auto" | "light" | "dark";
 
 interface Ability {
   type: AbilityType;
@@ -54,13 +55,32 @@ const SCHEME_INTENTS: SchemeIntent[] = [
   { label: "Match up vs. spread", tags: ["nickel-heavy"] },
 ];
 
+const THEME_ICONS: Record<ThemeMode, string> = { auto: "◐", light: "☀", dark: "☾" };
+const THEME_ORDER: ThemeMode[] = ["auto", "light", "dark"];
+
 const STORAGE_KEY = "cfb-companion-state-v1";
 
 interface PersistedState {
   view: View;
+  theme: ThemeMode;
   abilities: { type: AbilityType | null; tag: string | null; search: string };
   archetypes: { position: string | null; search: string };
   schemes: { side: Side | null; position: string | null; intentLabel: string | null; search: string };
+}
+
+function loadPersisted(): PersistedState | null {
+  let raw: string | null = null;
+  try {
+    raw = localStorage.getItem(STORAGE_KEY);
+  } catch {
+    return null;
+  }
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw) as PersistedState;
+  } catch {
+    return null;
+  }
 }
 
 let abilities: Ability[] = [];
@@ -69,8 +89,10 @@ let schemes: Scheme[] = [];
 let abilityByName = new Map<string, Ability>();
 let archetypesByName = new Map<string, Archetype[]>();
 let archetypeUsage = new Map<Archetype, Set<string>>();
+let abilityUsage = new Map<Ability, Set<string>>();
 
 let currentView: View = "abilities";
+let themeMode: ThemeMode = "auto";
 
 let activeType: AbilityType | null = null;
 let activeTag: string | null = null;
@@ -84,6 +106,7 @@ let expandedSchemeArchetypes = new Set<string>();
 let expandedSlots = new Set<string>();
 
 const tabButtons = document.querySelectorAll<HTMLButtonElement>(".tab-btn");
+const themeToggleBtn = document.getElementById("theme-toggle") as HTMLButtonElement;
 const abilitiesView = document.getElementById("abilities-view") as HTMLElement;
 const archetypesView = document.getElementById("archetypes-view") as HTMLElement;
 const schemesView = document.getElementById("schemes-view") as HTMLElement;
@@ -111,6 +134,13 @@ const sideFiltersEl = document.getElementById("side-filters") as HTMLDivElement;
 const schemePositionFiltersEl = document.getElementById("scheme-position-filters") as HTMLDivElement;
 const schemeListEl = document.getElementById("scheme-list") as HTMLDivElement;
 const schemeCountEl = document.getElementById("scheme-results-count") as HTMLDivElement;
+
+// Apply persisted theme immediately, before data loads, to avoid a flash of the wrong theme.
+(function initTheme() {
+  const persisted = loadPersisted();
+  themeMode = persisted?.theme ?? "auto";
+  applyTheme();
+})();
 
 Promise.all([
   fetch("data/abilities.json").then((res) => res.json() as Promise<Ability[]>),
@@ -144,6 +174,17 @@ Promise.all([
     });
   });
 
+  abilityUsage = new Map();
+  archetypes.forEach((arc) => {
+    arc.abilities.forEach((abilityName) => {
+      const ability = abilityByName.get(abilityName);
+      if (!ability) return;
+      const set = abilityUsage.get(ability) ?? new Set<string>();
+      set.add(arc.name);
+      abilityUsage.set(ability, set);
+    });
+  });
+
   restoreState();
 
   renderTypeFilters();
@@ -158,10 +199,10 @@ Promise.all([
   renderSchemePositionFilters();
   renderSchemes();
 
-  switchView(currentView);
+  switchView(currentView, false);
 });
 
-function switchView(view: View): void {
+function switchView(view: View, focusInput: boolean = true): void {
   currentView = view;
   tabButtons.forEach((btn) => {
     btn.classList.toggle("active", btn.dataset.view === view);
@@ -169,6 +210,15 @@ function switchView(view: View): void {
   abilitiesView.classList.toggle("hidden", view !== "abilities");
   archetypesView.classList.toggle("hidden", view !== "archetypes");
   schemesView.classList.toggle("hidden", view !== "schemes");
+
+  if (focusInput) {
+    const inputByView: Record<View, HTMLInputElement> = {
+      abilities: abilitySearchInput,
+      archetypes: archetypeSearchInput,
+      schemes: schemeSearchInput,
+    };
+    inputByView[view].focus({ preventScroll: true });
+  }
 }
 
 tabButtons.forEach((btn) => {
@@ -178,11 +228,33 @@ tabButtons.forEach((btn) => {
   });
 });
 
+// --- Theme ---
+
+function applyTheme(): void {
+  if (themeMode === "auto") {
+    document.documentElement.removeAttribute("data-theme");
+  } else {
+    document.documentElement.setAttribute("data-theme", themeMode);
+  }
+  if (themeToggleBtn) {
+    themeToggleBtn.textContent = THEME_ICONS[themeMode];
+    themeToggleBtn.setAttribute("aria-label", `Theme: ${themeMode}. Tap to change.`);
+  }
+}
+
+themeToggleBtn.addEventListener("click", () => {
+  const nextIndex = (THEME_ORDER.indexOf(themeMode) + 1) % THEME_ORDER.length;
+  themeMode = THEME_ORDER[nextIndex];
+  applyTheme();
+  saveState();
+});
+
 // --- Persistence ---
 
 function saveState(): void {
   const state: PersistedState = {
     view: currentView,
+    theme: themeMode,
     abilities: { type: activeType, tag: activeTag, search: abilitySearchInput.value },
     archetypes: { position: activePosition, search: archetypeSearchInput.value },
     schemes: {
@@ -200,20 +272,8 @@ function saveState(): void {
 }
 
 function restoreState(): void {
-  let raw: string | null = null;
-  try {
-    raw = localStorage.getItem(STORAGE_KEY);
-  } catch {
-    return;
-  }
-  if (!raw) return;
-
-  let state: PersistedState;
-  try {
-    state = JSON.parse(raw);
-  } catch {
-    return;
-  }
+  const state = loadPersisted();
+  if (!state) return;
 
   currentView = state.view ?? "abilities";
 
@@ -273,6 +333,10 @@ function renderTagFilters(): void {
   });
 }
 
+function groupKeyForAbility(a: Ability): string {
+  return a.tags && a.tags.length > 0 ? a.tags[0] : a.type;
+}
+
 function renderAbilities(): void {
   const query = abilitySearchInput.value.trim().toLowerCase();
 
@@ -293,22 +357,51 @@ function renderAbilities(): void {
     return;
   }
 
+  let lastGroup: string | null = null;
+
   abilityListEl.innerHTML = filtered
-    .map(
-      (a) => `
+    .map((a) => {
+      const group = groupKeyForAbility(a);
+      const header = group !== lastGroup ? `<div class="section-header">${escapeHtml(group)}</div>` : "";
+      lastGroup = group;
+
+      const usedBy = [...(abilityUsage.get(a) ?? [])];
+
+      return `
+    ${header}
     <div class="ability-card">
       <div class="ability-card-top">
-        <div class="ability-name">${escapeHtml(a.name)}</div>
+        <div class="ability-name">${highlightMatch(a.name, query)}</div>
         <div class="type-badge ${a.type}">${a.type}</div>
       </div>
-      <p class="ability-desc">${escapeHtml(a.description)}</p>
+      <p class="ability-desc">${highlightMatch(a.description, query)}</p>
       <div class="tag-row">
         ${(a.tags || []).map((t) => `<span class="tag">${escapeHtml(t)}</span>`).join("")}
       </div>
+      ${
+        usedBy.length > 0
+          ? `<div class="used-in-row">
+              <span class="used-in-label">Used by:</span>
+              ${usedBy.map((archetypeName) => `<button class="used-in-chip" data-archetype="${escapeHtml(archetypeName)}">${escapeHtml(archetypeName)}</button>`).join("")}
+            </div>`
+          : ""
+      }
     </div>
-  `
-    )
+  `;
+    })
     .join("");
+
+  abilityListEl.querySelectorAll<HTMLButtonElement>(".used-in-chip").forEach((chip) => {
+    chip.addEventListener("click", () => {
+      const archetypeName = chip.dataset.archetype as string;
+      activePosition = null;
+      archetypeSearchInput.value = archetypeName;
+      switchView("archetypes", false);
+      renderPositionFilters();
+      renderArchetypes();
+      saveState();
+    });
+  });
 }
 
 abilitySearchInput.addEventListener("input", () => {
@@ -371,13 +464,20 @@ function renderArchetypes(): void {
     return;
   }
 
+  let lastGroup: string | null = null;
+
   archetypeListEl.innerHTML = filtered
     .map((a, i) => {
+      const group = a.positions[0];
+      const header = group !== lastGroup ? `<div class="section-header">${escapeHtml(group)}</div>` : "";
+      lastGroup = group;
+
       const usedIn = [...(archetypeUsage.get(a) ?? [])];
       return `
+    ${header}
     <div class="archetype-card">
       <div class="archetype-card-top">
-        <div class="archetype-name">${escapeHtml(a.name)}</div>
+        <div class="archetype-name">${highlightMatch(a.name, query)}</div>
         <div class="position-row">
           ${a.positions.map((p) => `<span class="position-badge">${escapeHtml(p)}</span>`).join("")}
         </div>
@@ -417,10 +517,10 @@ function renderArchetypes(): void {
       activeSchemePosition = null;
       activeIntent = null;
       schemeSearchInput.value = schemeName;
-      switchView("schemes");
+      switchView("schemes", false);
+      renderIntentFilters();
       renderSideFilters();
       renderSchemePositionFilters();
-      renderIntentFilters();
       renderSchemes();
       saveState();
     });
@@ -548,10 +648,10 @@ function renderSchemes(): void {
       (s, si) => `
     <div class="scheme-card">
       <div class="scheme-card-top">
-        <div class="scheme-name">${escapeHtml(s.name)}</div>
+        <div class="scheme-name">${highlightMatch(s.name, query)}</div>
         <div class="side-badge ${s.side}">${s.side}</div>
       </div>
-      <p class="scheme-desc">${escapeHtml(s.description)}</p>
+      <p class="scheme-desc">${highlightMatch(s.description, query)}</p>
       ${s.slots.map((slot, sli) => renderSchemeSlot(s.name, si, sli, slot)).join("")}
     </div>`
     )
@@ -665,4 +765,19 @@ function escapeHtml(str: string): string {
   const div = document.createElement("div");
   div.textContent = str;
   return div.innerHTML;
+}
+
+function highlightMatch(text: string, query: string): string {
+  const escapedText = escapeHtml(text);
+  if (!query) return escapedText;
+  const escapedQuery = escapeHtml(query);
+  const idx = escapedText.toLowerCase().indexOf(escapedQuery.toLowerCase());
+  if (idx === -1) return escapedText;
+  return (
+    escapedText.slice(0, idx) +
+    "<mark>" +
+    escapedText.slice(idx, idx + escapedQuery.length) +
+    "</mark>" +
+    escapedText.slice(idx + escapedQuery.length)
+  );
 }
