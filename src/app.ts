@@ -39,24 +39,48 @@ interface Scheme {
 
 interface SchemeIntent {
   label: string;
+  side: Side;
   tags: string[];
 }
 
 const SCHEME_INTENTS: SchemeIntent[] = [
-  { label: "Air it out", tags: ["pass-heavy"] },
-  { label: "Balanced, do-everything", tags: ["balanced", "flexible"] },
-  { label: "Get after the passer", tags: ["pass-rush"] },
-  { label: "Go fast (tempo)", tags: ["tempo"] },
-  { label: "Lock down the pass", tags: ["coverage-heavy"] },
-  { label: "Match up vs. spread", tags: ["nickel-heavy"] },
-  { label: "Pound the ball", tags: ["run-heavy", "power"] },
-  { label: "Run the option", tags: ["option"] },
-  { label: "Spread it out", tags: ["spread-formation"] },
-  { label: "Stop the run", tags: ["run-stopping"] },
+  { label: "Air it out", side: "OFFENSE", tags: ["pass-heavy"] },
+  { label: "Balanced, do-everything", side: "OFFENSE", tags: ["balanced", "flexible"] },
+  { label: "Go fast (tempo)", side: "OFFENSE", tags: ["tempo"] },
+  { label: "Pound the ball", side: "OFFENSE", tags: ["run-heavy", "power"] },
+  { label: "Run the option", side: "OFFENSE", tags: ["option"] },
+  { label: "Spread it out", side: "OFFENSE", tags: ["spread-formation"] },
+  { label: "Get after the passer", side: "DEFENSE", tags: ["pass-rush"] },
+  { label: "Lock down the pass", side: "DEFENSE", tags: ["coverage-heavy"] },
+  { label: "Match up vs. spread", side: "DEFENSE", tags: ["nickel-heavy"] },
+  { label: "Stop the run", side: "DEFENSE", tags: ["run-stopping"] },
 ];
 
 const THEME_ICONS: Record<ThemeMode, string> = { auto: "◐", light: "☀", dark: "☾" };
 const THEME_ORDER: ThemeMode[] = ["auto", "light", "dark"];
+
+// Position/tag groupings used to split filter chips into OFFENSE / DEFENSE / (SPECIAL TEAMS | GENERAL) sections.
+const OFFENSE_POSITIONS = new Set(["QB", "RB", "FB", "WR", "TE", "OT", "OG", "C"]);
+const DEFENSE_POSITIONS = new Set(["LEDGE", "DT", "REDGE", "SAM", "MIKE", "WILL", "CB", "FS", "SS"]);
+
+type PositionGroup = "OFFENSE" | "DEFENSE" | "SPECIAL TEAMS";
+
+function positionGroup(position: string): PositionGroup {
+  if (OFFENSE_POSITIONS.has(position)) return "OFFENSE";
+  if (DEFENSE_POSITIONS.has(position)) return "DEFENSE";
+  return "SPECIAL TEAMS";
+}
+
+const OFFENSE_TAGS = new Set(["PASSING", "RUSHING", "RECEIVING", "BLOCKING"]);
+const DEFENSE_TAGS = new Set(["DEFENSE", "COVERAGE", "TACKLING"]);
+
+type TagGroup = "OFFENSE" | "DEFENSE" | "GENERAL";
+
+function tagGroup(tag: string): TagGroup {
+  if (OFFENSE_TAGS.has(tag)) return "OFFENSE";
+  if (DEFENSE_TAGS.has(tag)) return "DEFENSE";
+  return "GENERAL";
+}
 
 const STORAGE_KEY = "cfb-companion-state-v1";
 
@@ -65,7 +89,7 @@ interface PersistedState {
   theme: ThemeMode;
   abilities: { type: AbilityType | null; tag: string | null; search: string };
   archetypes: { position: string | null; search: string };
-  schemes: { side: Side | null; position: string | null; intentLabel: string | null; search: string };
+  schemes: { intentLabel: string | null; search: string };
 }
 
 function loadPersisted(): PersistedState | null {
@@ -99,8 +123,6 @@ let activeTag: string | null = null;
 let activePosition: string | null = null;
 let expandedAbilities = new Set<string>();
 
-let activeSide: Side | null = null;
-let activeSchemePosition: string | null = null;
 let activeIntent: SchemeIntent | null = null;
 let expandedSchemeArchetypes = new Set<string>();
 let expandedSlots = new Set<string>();
@@ -115,23 +137,26 @@ const abilitySearchInput = document.getElementById("ability-search") as HTMLInpu
 const abilitySearchClear = document.getElementById("ability-search-clear") as HTMLButtonElement;
 const abilityClearFilters = document.getElementById("ability-clear-filters") as HTMLButtonElement;
 const typeFiltersEl = document.getElementById("type-filters") as HTMLDivElement;
-const tagFiltersEl = document.getElementById("tag-filters") as HTMLDivElement;
+const tagFiltersOffenseEl = document.getElementById("tag-filters-offense") as HTMLDivElement;
+const tagFiltersDefenseEl = document.getElementById("tag-filters-defense") as HTMLDivElement;
+const tagFiltersGeneralEl = document.getElementById("tag-filters-general") as HTMLDivElement;
 const abilityListEl = document.getElementById("ability-list") as HTMLDivElement;
 const abilityCountEl = document.getElementById("ability-results-count") as HTMLDivElement;
 
 const archetypeSearchInput = document.getElementById("archetype-search") as HTMLInputElement;
 const archetypeSearchClear = document.getElementById("archetype-search-clear") as HTMLButtonElement;
 const archetypeClearFilters = document.getElementById("archetype-clear-filters") as HTMLButtonElement;
-const positionFiltersEl = document.getElementById("position-filters") as HTMLDivElement;
+const positionFiltersOffenseEl = document.getElementById("position-filters-offense") as HTMLDivElement;
+const positionFiltersDefenseEl = document.getElementById("position-filters-defense") as HTMLDivElement;
+const positionFiltersSpecialEl = document.getElementById("position-filters-special") as HTMLDivElement;
 const archetypeListEl = document.getElementById("archetype-list") as HTMLDivElement;
 const archetypeCountEl = document.getElementById("archetype-results-count") as HTMLDivElement;
 
 const schemeSearchInput = document.getElementById("scheme-search") as HTMLInputElement;
 const schemeSearchClear = document.getElementById("scheme-search-clear") as HTMLButtonElement;
 const schemeClearFilters = document.getElementById("scheme-clear-filters") as HTMLButtonElement;
-const intentFiltersEl = document.getElementById("intent-filters") as HTMLDivElement;
-const sideFiltersEl = document.getElementById("side-filters") as HTMLDivElement;
-const schemePositionFiltersEl = document.getElementById("scheme-position-filters") as HTMLDivElement;
+const intentFiltersOffenseEl = document.getElementById("intent-filters-offense") as HTMLDivElement;
+const intentFiltersDefenseEl = document.getElementById("intent-filters-defense") as HTMLDivElement;
 const schemeListEl = document.getElementById("scheme-list") as HTMLDivElement;
 const schemeCountEl = document.getElementById("scheme-results-count") as HTMLDivElement;
 
@@ -202,8 +227,6 @@ function renderAll(): void {
   renderArchetypes();
 
   renderIntentFilters();
-  renderSideFilters();
-  renderSchemePositionFilters();
   renderSchemes();
 }
 
@@ -263,8 +286,6 @@ function saveState(): void {
     abilities: { type: activeType, tag: activeTag, search: abilitySearchInput.value },
     archetypes: { position: activePosition, search: archetypeSearchInput.value },
     schemes: {
-      side: activeSide,
-      position: activeSchemePosition,
       intentLabel: activeIntent ? activeIntent.label : null,
       search: schemeSearchInput.value,
     },
@@ -289,8 +310,6 @@ function restoreState(): void {
   activePosition = state.archetypes?.position ?? null;
   archetypeSearchInput.value = state.archetypes?.search ?? "";
 
-  activeSide = state.schemes?.side ?? null;
-  activeSchemePosition = state.schemes?.position ?? null;
   activeIntent = SCHEME_INTENTS.find((i) => i.label === state.schemes?.intentLabel) ?? null;
   schemeSearchInput.value = state.schemes?.search ?? "";
 }
@@ -314,13 +333,8 @@ function renderTypeFilters(): void {
   });
 }
 
-function renderTagFilters(): void {
-  const pool = activeType ? abilities.filter((a) => a.type === activeType) : abilities;
-  const tags = [...new Set(pool.flatMap((a) => a.tags || []))].sort();
-
-  if (activeTag && !tags.includes(activeTag)) activeTag = null;
-
-  tagFiltersEl.innerHTML = "";
+function renderTagFilterGroup(container: HTMLDivElement, tags: string[]): void {
+  container.innerHTML = "";
   tags.forEach((tag) => {
     const chip = document.createElement("button");
     chip.className = "chip";
@@ -331,8 +345,23 @@ function renderTagFilters(): void {
       saveState();
     });
     if (activeTag === tag) chip.classList.add("active");
-    tagFiltersEl.appendChild(chip);
+    container.appendChild(chip);
   });
+}
+
+function renderTagFilters(): void {
+  const pool = activeType ? abilities.filter((a) => a.type === activeType) : abilities;
+  const allTags = [...new Set(pool.flatMap((a) => a.tags || []))];
+
+  if (activeTag && !allTags.includes(activeTag)) activeTag = null;
+
+  const offenseTags = allTags.filter((t) => tagGroup(t) === "OFFENSE").sort();
+  const defenseTags = allTags.filter((t) => tagGroup(t) === "DEFENSE").sort();
+  const generalTags = allTags.filter((t) => tagGroup(t) === "GENERAL").sort();
+
+  renderTagFilterGroup(tagFiltersOffenseEl, offenseTags);
+  renderTagFilterGroup(tagFiltersDefenseEl, defenseTags);
+  renderTagFilterGroup(tagFiltersGeneralEl, generalTags);
 }
 
 function groupKeyForAbility(a: Ability): string {
@@ -431,9 +460,8 @@ abilityClearFilters.addEventListener("click", () => {
 
 // --- Archetypes view ---
 
-function renderPositionFilters(): void {
-  const positions = [...new Set(archetypes.flatMap((a) => a.positions))].sort();
-  positionFiltersEl.innerHTML = "";
+function renderPositionFilterGroup(container: HTMLDivElement, positions: string[]): void {
+  container.innerHTML = "";
   positions.forEach((position) => {
     const chip = document.createElement("button");
     chip.className = "chip";
@@ -444,8 +472,20 @@ function renderPositionFilters(): void {
       saveState();
     });
     if (activePosition === position) chip.classList.add("active");
-    positionFiltersEl.appendChild(chip);
+    container.appendChild(chip);
   });
+}
+
+function renderPositionFilters(): void {
+  const allPositions = [...new Set(archetypes.flatMap((a) => a.positions))];
+
+  const offensePositions = allPositions.filter((p) => positionGroup(p) === "OFFENSE").sort();
+  const defensePositions = allPositions.filter((p) => positionGroup(p) === "DEFENSE").sort();
+  const specialPositions = allPositions.filter((p) => positionGroup(p) === "SPECIAL TEAMS").sort();
+
+  renderPositionFilterGroup(positionFiltersOffenseEl, offensePositions);
+  renderPositionFilterGroup(positionFiltersDefenseEl, defensePositions);
+  renderPositionFilterGroup(positionFiltersSpecialEl, specialPositions);
 }
 
 function renderArchetypes(): void {
@@ -521,8 +561,6 @@ function renderArchetypes(): void {
   archetypeListEl.querySelectorAll<HTMLButtonElement>(".used-in-chip").forEach((chip) => {
     chip.addEventListener("click", () => {
       const schemeName = chip.dataset.scheme as string;
-      activeSide = null;
-      activeSchemePosition = null;
       activeIntent = null;
       schemeSearchInput.value = schemeName;
       switchView("schemes", false);
@@ -566,9 +604,9 @@ archetypeClearFilters.addEventListener("click", () => {
 
 // --- Schemes view ---
 
-function renderIntentFilters(): void {
-  intentFiltersEl.innerHTML = "";
-  SCHEME_INTENTS.forEach((intent) => {
+function renderIntentFilterGroup(container: HTMLDivElement, intents: SchemeIntent[]): void {
+  container.innerHTML = "";
+  intents.forEach((intent) => {
     const chip = document.createElement("button");
     chip.className = "chip";
     chip.textContent = intent.label;
@@ -578,54 +616,25 @@ function renderIntentFilters(): void {
       saveState();
     });
     if (activeIntent === intent) chip.classList.add("active");
-    intentFiltersEl.appendChild(chip);
+    container.appendChild(chip);
   });
 }
 
-function renderSideFilters(): void {
-  const sides = [...new Set(schemes.map((s) => s.side))].sort();
-  sideFiltersEl.innerHTML = "";
-  sides.forEach((side) => {
-    const chip = document.createElement("button");
-    chip.className = "chip";
-    chip.textContent = side;
-    chip.addEventListener("click", () => {
-      activeSide = activeSide === side ? null : side;
-      renderAll();
-      saveState();
-    });
-    if (activeSide === side) chip.classList.add("active");
-    sideFiltersEl.appendChild(chip);
-  });
-}
-
-function renderSchemePositionFilters(): void {
-  const pool = activeSide ? schemes.filter((s) => s.side === activeSide) : schemes;
-  const positions = [...new Set(pool.flatMap((s) => s.slots.map((slot) => slot.position)))].sort();
-
-  if (activeSchemePosition && !positions.includes(activeSchemePosition)) activeSchemePosition = null;
-
-  schemePositionFiltersEl.innerHTML = "";
-  positions.forEach((position) => {
-    const chip = document.createElement("button");
-    chip.className = "chip";
-    chip.textContent = position;
-    chip.addEventListener("click", () => {
-      activeSchemePosition = activeSchemePosition === position ? null : position;
-      renderAll();
-      saveState();
-    });
-    if (activeSchemePosition === position) chip.classList.add("active");
-    schemePositionFiltersEl.appendChild(chip);
-  });
+function renderIntentFilters(): void {
+  renderIntentFilterGroup(
+    intentFiltersOffenseEl,
+    SCHEME_INTENTS.filter((i) => i.side === "OFFENSE")
+  );
+  renderIntentFilterGroup(
+    intentFiltersDefenseEl,
+    SCHEME_INTENTS.filter((i) => i.side === "DEFENSE")
+  );
 }
 
 function renderSchemes(): void {
   const query = schemeSearchInput.value.trim().toLowerCase();
 
   const filtered = schemes.filter((s) => {
-    if (activeSide && s.side !== activeSide) return false;
-    if (activeSchemePosition && !s.slots.some((slot) => slot.position === activeSchemePosition)) return false;
     if (activeIntent && !s.tags.some((tag) => activeIntent!.tags.includes(tag))) return false;
     if (query) {
       const names = s.slots.map((slot) => slot.archetypes.map(archetypeRefName).join(" ")).join(" ");
@@ -643,11 +652,21 @@ function renderSchemes(): void {
     return;
   }
 
-  filtered.sort((a, b) => a.name.localeCompare(b.name));
+  const sideOrder: Record<Side, number> = { OFFENSE: 0, DEFENSE: 1 };
+  filtered.sort((a, b) => {
+    const sideCompare = sideOrder[a.side] - sideOrder[b.side];
+    return sideCompare !== 0 ? sideCompare : a.name.localeCompare(b.name);
+  });
+
+  let lastSide: Side | null = null;
 
   schemeListEl.innerHTML = filtered
-    .map(
-      (s, si) => `
+    .map((s, si) => {
+      const header = s.side !== lastSide ? `<div class="section-header">${escapeHtml(s.side)}</div>` : "";
+      lastSide = s.side;
+
+      return `
+    ${header}
     <div class="scheme-card">
       <div class="scheme-card-top">
         <div class="scheme-name">${highlightMatch(s.name, query)}</div>
@@ -655,8 +674,8 @@ function renderSchemes(): void {
       </div>
       <p class="scheme-desc">${highlightMatch(s.description, query)}</p>
       ${s.slots.map((slot, sli) => renderSchemeSlot(s.name, si, sli, slot)).join("")}
-    </div>`
-    )
+    </div>`;
+    })
     .join("");
 
   schemeListEl.querySelectorAll<HTMLButtonElement>(".archetype-chip").forEach((chip) => {
@@ -752,8 +771,6 @@ schemeSearchClear.addEventListener("click", () => {
 });
 
 schemeClearFilters.addEventListener("click", () => {
-  activeSide = null;
-  activeSchemePosition = null;
   activeIntent = null;
   schemeSearchInput.value = "";
   renderAll();
