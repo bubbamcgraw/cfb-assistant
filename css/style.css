@@ -89,9 +89,13 @@ main {
   z-index: 10;
 }
 
-#search {
+.search-wrap {
+  position: relative;
+}
+
+.search-wrap input {
   width: 100%;
-  padding: 0.65rem 0.9rem;
+  padding: 0.65rem 2.2rem 0.65rem 0.9rem;
   font-size: 1rem;
   border: 1px solid var(--border);
   border-radius: 10px;
@@ -99,9 +103,27 @@ main {
   color: var(--text);
 }
 
-#search:focus {
+.search-wrap input:focus {
   outline: 2px solid var(--accent);
   outline-offset: 1px;
+}
+
+.search-clear {
+  position: absolute;
+  right: 0.4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 1.3rem;
+  line-height: 1;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+}
+
+.search-clear:hover {
+  color: var(--text);
 }
 
 .filter-row {
@@ -116,6 +138,19 @@ main {
   font-weight: 600;
   color: var(--muted);
   margin-top: 0.7rem;
+}
+
+.clear-filters-btn {
+  display: block;
+  margin-top: 0.6rem;
+  border: none;
+  background: transparent;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
 }
 
 .chip {
@@ -273,6 +308,42 @@ main {
   color: var(--muted);
   padding: 0 0.6rem 0.4rem;
   margin-top: -0.2rem;
+}
+
+.used-in-row {
+  margin-top: 0.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.used-in-label {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.used-in-chip {
+  border: 1px solid var(--border);
+  background: var(--chip-bg);
+  color: var(--accent);
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.slot-toggle {
+  align-self: flex-start;
+  border: none;
+  background: transparent;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0.1rem 0.6rem;
 }
 
 .scheme-list {

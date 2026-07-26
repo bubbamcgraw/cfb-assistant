@@ -27,9 +27,13 @@
 <main>
   <section id="abilities-view" class="view">
     <div class="controls">
-      <input id="ability-search" type="search" placeholder="Search abilities..." autocomplete="off">
+      <div class="search-wrap">
+        <input id="ability-search" type="search" placeholder="Search abilities..." autocomplete="off">
+        <button class="search-clear" id="ability-search-clear" aria-label="Clear search">&times;</button>
+      </div>
       <div class="filter-row" id="type-filters"></div>
       <div class="filter-row" id="tag-filters"></div>
+      <button class="clear-filters-btn" id="ability-clear-filters">Clear filters</button>
     </div>
     <div id="ability-results-count" class="results-count"></div>
     <div id="ability-list" class="ability-list"></div>
@@ -37,8 +41,12 @@
 
   <section id="archetypes-view" class="view hidden">
     <div class="controls">
-      <input id="archetype-search" type="search" placeholder="Search archetypes..." autocomplete="off">
+      <div class="search-wrap">
+        <input id="archetype-search" type="search" placeholder="Search archetypes..." autocomplete="off">
+        <button class="search-clear" id="archetype-search-clear" aria-label="Clear search">&times;</button>
+      </div>
       <div class="filter-row" id="position-filters"></div>
+      <button class="clear-filters-btn" id="archetype-clear-filters">Clear filters</button>
     </div>
     <div id="archetype-results-count" class="results-count"></div>
     <div id="archetype-list" class="archetype-list"></div>
@@ -46,11 +54,15 @@
 
   <section id="schemes-view" class="view hidden">
     <div class="controls">
-      <input id="scheme-search" type="search" placeholder="Search schemes, or describe what you want to run..." autocomplete="off">
+      <div class="search-wrap">
+        <input id="scheme-search" type="search" placeholder="Search schemes, or describe what you want to run..." autocomplete="off">
+        <button class="search-clear" id="scheme-search-clear" aria-label="Clear search">&times;</button>
+      </div>
       <div class="filter-label">What do you want to run?</div>
       <div class="filter-row" id="intent-filters"></div>
       <div class="filter-row" id="side-filters"></div>
       <div class="filter-row" id="scheme-position-filters"></div>
+      <button class="clear-filters-btn" id="scheme-clear-filters">Clear filters</button>
     </div>
     <div id="scheme-results-count" class="results-count"></div>
     <div id="scheme-list" class="scheme-list"></div>

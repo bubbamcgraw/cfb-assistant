@@ -54,11 +54,23 @@ const SCHEME_INTENTS: SchemeIntent[] = [
   { label: "Match up vs. spread", tags: ["nickel-heavy"] },
 ];
 
+const STORAGE_KEY = "cfb-companion-state-v1";
+
+interface PersistedState {
+  view: View;
+  abilities: { type: AbilityType | null; tag: string | null; search: string };
+  archetypes: { position: string | null; search: string };
+  schemes: { side: Side | null; position: string | null; intentLabel: string | null; search: string };
+}
+
 let abilities: Ability[] = [];
 let archetypes: Archetype[] = [];
 let schemes: Scheme[] = [];
 let abilityByName = new Map<string, Ability>();
 let archetypesByName = new Map<string, Archetype[]>();
+let archetypeUsage = new Map<Archetype, Set<string>>();
+
+let currentView: View = "abilities";
 
 let activeType: AbilityType | null = null;
 let activeTag: string | null = null;
@@ -69,6 +81,7 @@ let activeSide: Side | null = null;
 let activeSchemePosition: string | null = null;
 let activeIntent: SchemeIntent | null = null;
 let expandedSchemeArchetypes = new Set<string>();
+let expandedSlots = new Set<string>();
 
 const tabButtons = document.querySelectorAll<HTMLButtonElement>(".tab-btn");
 const abilitiesView = document.getElementById("abilities-view") as HTMLElement;
@@ -76,17 +89,23 @@ const archetypesView = document.getElementById("archetypes-view") as HTMLElement
 const schemesView = document.getElementById("schemes-view") as HTMLElement;
 
 const abilitySearchInput = document.getElementById("ability-search") as HTMLInputElement;
+const abilitySearchClear = document.getElementById("ability-search-clear") as HTMLButtonElement;
+const abilityClearFilters = document.getElementById("ability-clear-filters") as HTMLButtonElement;
 const typeFiltersEl = document.getElementById("type-filters") as HTMLDivElement;
 const tagFiltersEl = document.getElementById("tag-filters") as HTMLDivElement;
 const abilityListEl = document.getElementById("ability-list") as HTMLDivElement;
 const abilityCountEl = document.getElementById("ability-results-count") as HTMLDivElement;
 
 const archetypeSearchInput = document.getElementById("archetype-search") as HTMLInputElement;
+const archetypeSearchClear = document.getElementById("archetype-search-clear") as HTMLButtonElement;
+const archetypeClearFilters = document.getElementById("archetype-clear-filters") as HTMLButtonElement;
 const positionFiltersEl = document.getElementById("position-filters") as HTMLDivElement;
 const archetypeListEl = document.getElementById("archetype-list") as HTMLDivElement;
 const archetypeCountEl = document.getElementById("archetype-results-count") as HTMLDivElement;
 
 const schemeSearchInput = document.getElementById("scheme-search") as HTMLInputElement;
+const schemeSearchClear = document.getElementById("scheme-search-clear") as HTMLButtonElement;
+const schemeClearFilters = document.getElementById("scheme-clear-filters") as HTMLButtonElement;
 const intentFiltersEl = document.getElementById("intent-filters") as HTMLDivElement;
 const sideFiltersEl = document.getElementById("side-filters") as HTMLDivElement;
 const schemePositionFiltersEl = document.getElementById("scheme-position-filters") as HTMLDivElement;
@@ -110,6 +129,23 @@ Promise.all([
     archetypesByName.set(a.name, list);
   });
 
+  archetypeUsage = new Map();
+  schemes.forEach((s) => {
+    s.slots.forEach((slot) => {
+      slot.archetypes.forEach((ref) => {
+        const name = archetypeRefName(ref);
+        const lookupPosition = typeof ref === "string" ? slot.position : ref.fromPosition ?? slot.position;
+        const archetype = resolveArchetype(name, lookupPosition);
+        if (!archetype) return;
+        const set = archetypeUsage.get(archetype) ?? new Set<string>();
+        set.add(s.name);
+        archetypeUsage.set(archetype, set);
+      });
+    });
+  });
+
+  restoreState();
+
   renderTypeFilters();
   renderTagFilters();
   renderAbilities();
@@ -121,9 +157,12 @@ Promise.all([
   renderSideFilters();
   renderSchemePositionFilters();
   renderSchemes();
+
+  switchView(currentView);
 });
 
 function switchView(view: View): void {
+  currentView = view;
   tabButtons.forEach((btn) => {
     btn.classList.toggle("active", btn.dataset.view === view);
   });
@@ -135,8 +174,61 @@ function switchView(view: View): void {
 tabButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
     switchView(btn.dataset.view as View);
+    saveState();
   });
 });
+
+// --- Persistence ---
+
+function saveState(): void {
+  const state: PersistedState = {
+    view: currentView,
+    abilities: { type: activeType, tag: activeTag, search: abilitySearchInput.value },
+    archetypes: { position: activePosition, search: archetypeSearchInput.value },
+    schemes: {
+      side: activeSide,
+      position: activeSchemePosition,
+      intentLabel: activeIntent ? activeIntent.label : null,
+      search: schemeSearchInput.value,
+    },
+  };
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch {
+    // ignore storage errors (private browsing, quota, etc.)
+  }
+}
+
+function restoreState(): void {
+  let raw: string | null = null;
+  try {
+    raw = localStorage.getItem(STORAGE_KEY);
+  } catch {
+    return;
+  }
+  if (!raw) return;
+
+  let state: PersistedState;
+  try {
+    state = JSON.parse(raw);
+  } catch {
+    return;
+  }
+
+  currentView = state.view ?? "abilities";
+
+  activeType = state.abilities?.type ?? null;
+  activeTag = state.abilities?.tag ?? null;
+  abilitySearchInput.value = state.abilities?.search ?? "";
+
+  activePosition = state.archetypes?.position ?? null;
+  archetypeSearchInput.value = state.archetypes?.search ?? "";
+
+  activeSide = state.schemes?.side ?? null;
+  activeSchemePosition = state.schemes?.position ?? null;
+  activeIntent = SCHEME_INTENTS.find((i) => i.label === state.schemes?.intentLabel) ?? null;
+  schemeSearchInput.value = state.schemes?.search ?? "";
+}
 
 // --- Abilities view ---
 
@@ -152,6 +244,7 @@ function renderTypeFilters(): void {
       renderTypeFilters();
       renderTagFilters();
       renderAbilities();
+      saveState();
     });
     if (activeType === type) chip.classList.add("active");
     typeFiltersEl.appendChild(chip);
@@ -173,6 +266,7 @@ function renderTagFilters(): void {
       activeTag = activeTag === tag ? null : tag;
       renderTagFilters();
       renderAbilities();
+      saveState();
     });
     if (activeTag === tag) chip.classList.add("active");
     tagFiltersEl.appendChild(chip);
@@ -217,7 +311,26 @@ function renderAbilities(): void {
     .join("");
 }
 
-abilitySearchInput.addEventListener("input", renderAbilities);
+abilitySearchInput.addEventListener("input", () => {
+  renderAbilities();
+  saveState();
+});
+
+abilitySearchClear.addEventListener("click", () => {
+  abilitySearchInput.value = "";
+  renderAbilities();
+  saveState();
+});
+
+abilityClearFilters.addEventListener("click", () => {
+  activeType = null;
+  activeTag = null;
+  abilitySearchInput.value = "";
+  renderTypeFilters();
+  renderTagFilters();
+  renderAbilities();
+  saveState();
+});
 
 // --- Archetypes view ---
 
@@ -232,6 +345,7 @@ function renderPositionFilters(): void {
       activePosition = activePosition === position ? null : position;
       renderPositionFilters();
       renderArchetypes();
+      saveState();
     });
     if (activePosition === position) chip.classList.add("active");
     positionFiltersEl.appendChild(chip);
@@ -258,8 +372,9 @@ function renderArchetypes(): void {
   }
 
   archetypeListEl.innerHTML = filtered
-    .map(
-      (a, i) => `
+    .map((a, i) => {
+      const usedIn = [...(archetypeUsage.get(a) ?? [])];
+      return `
     <div class="archetype-card">
       <div class="archetype-card-top">
         <div class="archetype-name">${escapeHtml(a.name)}</div>
@@ -270,9 +385,17 @@ function renderArchetypes(): void {
       <div class="archetype-abilities">
         ${a.abilities.map((abilityName) => renderAbilityChip(a.name, i, abilityName)).join("")}
       </div>
+      ${
+        usedIn.length > 0
+          ? `<div class="used-in-row">
+              <span class="used-in-label">Used in:</span>
+              ${usedIn.map((schemeName) => `<button class="used-in-chip" data-scheme="${escapeHtml(schemeName)}">${escapeHtml(schemeName)}</button>`).join("")}
+            </div>`
+          : ""
+      }
     </div>
-  `
-    )
+  `;
+    })
     .join("");
 
   archetypeListEl.querySelectorAll<HTMLButtonElement>(".ability-chip").forEach((chip) => {
@@ -284,6 +407,22 @@ function renderArchetypes(): void {
         expandedAbilities.add(key);
       }
       renderArchetypes();
+    });
+  });
+
+  archetypeListEl.querySelectorAll<HTMLButtonElement>(".used-in-chip").forEach((chip) => {
+    chip.addEventListener("click", () => {
+      const schemeName = chip.dataset.scheme as string;
+      activeSide = null;
+      activeSchemePosition = null;
+      activeIntent = null;
+      schemeSearchInput.value = schemeName;
+      switchView("schemes");
+      renderSideFilters();
+      renderSchemePositionFilters();
+      renderIntentFilters();
+      renderSchemes();
+      saveState();
     });
   });
 }
@@ -302,7 +441,24 @@ function renderAbilityChip(archetypeName: string, index: number, abilityName: st
   return html;
 }
 
-archetypeSearchInput.addEventListener("input", renderArchetypes);
+archetypeSearchInput.addEventListener("input", () => {
+  renderArchetypes();
+  saveState();
+});
+
+archetypeSearchClear.addEventListener("click", () => {
+  archetypeSearchInput.value = "";
+  renderArchetypes();
+  saveState();
+});
+
+archetypeClearFilters.addEventListener("click", () => {
+  activePosition = null;
+  archetypeSearchInput.value = "";
+  renderPositionFilters();
+  renderArchetypes();
+  saveState();
+});
 
 // --- Schemes view ---
 
@@ -316,6 +472,7 @@ function renderIntentFilters(): void {
       activeIntent = activeIntent === intent ? null : intent;
       renderIntentFilters();
       renderSchemes();
+      saveState();
     });
     if (activeIntent === intent) chip.classList.add("active");
     intentFiltersEl.appendChild(chip);
@@ -334,6 +491,7 @@ function renderSideFilters(): void {
       renderSideFilters();
       renderSchemePositionFilters();
       renderSchemes();
+      saveState();
     });
     if (activeSide === side) chip.classList.add("active");
     sideFiltersEl.appendChild(chip);
@@ -355,6 +513,7 @@ function renderSchemePositionFilters(): void {
       activeSchemePosition = activeSchemePosition === position ? null : position;
       renderSchemePositionFilters();
       renderSchemes();
+      saveState();
     });
     if (activeSchemePosition === position) chip.classList.add("active");
     schemePositionFiltersEl.appendChild(chip);
@@ -393,19 +552,7 @@ function renderSchemes(): void {
         <div class="side-badge ${s.side}">${s.side}</div>
       </div>
       <p class="scheme-desc">${escapeHtml(s.description)}</p>
-      ${s.slots
-        .map(
-          (slot, sli) => `
-        <div class="scheme-slot">
-          <span class="position-badge">${escapeHtml(slot.position)}</span>
-          <div class="scheme-slot-archetypes">
-            ${slot.archetypes
-              .map((ref, ai) => renderSchemeArchetypeChip(s.name, si, sli, slot.position, ai, ref))
-              .join("")}
-          </div>
-        </div>`
-        )
-        .join("")}
+      ${s.slots.map((slot, sli) => renderSchemeSlot(s.name, si, sli, slot)).join("")}
     </div>`
     )
     .join("");
@@ -421,6 +568,40 @@ function renderSchemes(): void {
       renderSchemes();
     });
   });
+
+  schemeListEl.querySelectorAll<HTMLButtonElement>(".slot-toggle").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const slotKey = btn.dataset.slotKey as string;
+      if (expandedSlots.has(slotKey)) {
+        expandedSlots.delete(slotKey);
+      } else {
+        expandedSlots.add(slotKey);
+      }
+      renderSchemes();
+    });
+  });
+}
+
+function renderSchemeSlot(schemeName: string, si: number, sli: number, slot: SchemeSlot): string {
+  const slotKey = `${schemeName}-${si}-${sli}`;
+  const expanded = expandedSlots.has(slotKey) || slot.archetypes.length <= 1;
+  const visibleRefs = expanded ? slot.archetypes : slot.archetypes.slice(0, 1);
+
+  const toggle =
+    slot.archetypes.length > 1
+      ? `<button class="slot-toggle" data-slot-key="${escapeHtml(slotKey)}">${
+          expanded ? "Show less" : `+${slot.archetypes.length - 1} more`
+        }</button>`
+      : "";
+
+  return `
+    <div class="scheme-slot">
+      <span class="position-badge">${escapeHtml(slot.position)}</span>
+      <div class="scheme-slot-archetypes">
+        ${visibleRefs.map((ref, ai) => renderSchemeArchetypeChip(schemeName, si, sli, slot.position, ai, ref)).join("")}
+        ${toggle}
+      </div>
+    </div>`;
 }
 
 function archetypeRefName(ref: SchemeArchetypeRef): string {
@@ -457,7 +638,28 @@ function renderSchemeArchetypeChip(schemeName: string, si: number, sli: number, 
   return html;
 }
 
-schemeSearchInput.addEventListener("input", renderSchemes);
+schemeSearchInput.addEventListener("input", () => {
+  renderSchemes();
+  saveState();
+});
+
+schemeSearchClear.addEventListener("click", () => {
+  schemeSearchInput.value = "";
+  renderSchemes();
+  saveState();
+});
+
+schemeClearFilters.addEventListener("click", () => {
+  activeSide = null;
+  activeSchemePosition = null;
+  activeIntent = null;
+  schemeSearchInput.value = "";
+  renderIntentFilters();
+  renderSideFilters();
+  renderSchemePositionFilters();
+  renderSchemes();
+  saveState();
+});
 
 function escapeHtml(str: string): string {
   const div = document.createElement("div");
