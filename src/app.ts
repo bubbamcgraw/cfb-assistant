@@ -186,7 +186,14 @@ Promise.all([
   });
 
   restoreState();
+  renderAll();
+  switchView(currentView, false);
+});
 
+// Single dispatcher for "state changed, re-render everything." Simpler and safer
+// than hand-picking which render functions a given change affects — every view's
+// data set is small, so re-rendering all three on any change is imperceptible.
+function renderAll(): void {
   renderTypeFilters();
   renderTagFilters();
   renderAbilities();
@@ -198,9 +205,7 @@ Promise.all([
   renderSideFilters();
   renderSchemePositionFilters();
   renderSchemes();
-
-  switchView(currentView, false);
-});
+}
 
 function switchView(view: View, focusInput: boolean = true): void {
   currentView = view;
@@ -301,9 +306,7 @@ function renderTypeFilters(): void {
     chip.textContent = type;
     chip.addEventListener("click", () => {
       activeType = activeType === type ? null : type;
-      renderTypeFilters();
-      renderTagFilters();
-      renderAbilities();
+      renderAll();
       saveState();
     });
     if (activeType === type) chip.classList.add("active");
@@ -324,8 +327,7 @@ function renderTagFilters(): void {
     chip.textContent = tag;
     chip.addEventListener("click", () => {
       activeTag = activeTag === tag ? null : tag;
-      renderTagFilters();
-      renderAbilities();
+      renderAll();
       saveState();
     });
     if (activeTag === tag) chip.classList.add("active");
@@ -397,21 +399,20 @@ function renderAbilities(): void {
       activePosition = null;
       archetypeSearchInput.value = archetypeName;
       switchView("archetypes", false);
-      renderPositionFilters();
-      renderArchetypes();
+      renderAll();
       saveState();
     });
   });
 }
 
 abilitySearchInput.addEventListener("input", () => {
-  renderAbilities();
+  renderAll();
   saveState();
 });
 
 abilitySearchClear.addEventListener("click", () => {
   abilitySearchInput.value = "";
-  renderAbilities();
+  renderAll();
   saveState();
 });
 
@@ -419,9 +420,7 @@ abilityClearFilters.addEventListener("click", () => {
   activeType = null;
   activeTag = null;
   abilitySearchInput.value = "";
-  renderTypeFilters();
-  renderTagFilters();
-  renderAbilities();
+  renderAll();
   saveState();
 });
 
@@ -436,8 +435,7 @@ function renderPositionFilters(): void {
     chip.textContent = position;
     chip.addEventListener("click", () => {
       activePosition = activePosition === position ? null : position;
-      renderPositionFilters();
-      renderArchetypes();
+      renderAll();
       saveState();
     });
     if (activePosition === position) chip.classList.add("active");
@@ -506,7 +504,7 @@ function renderArchetypes(): void {
       } else {
         expandedAbilities.add(key);
       }
-      renderArchetypes();
+      renderAll();
     });
   });
 
@@ -518,10 +516,7 @@ function renderArchetypes(): void {
       activeIntent = null;
       schemeSearchInput.value = schemeName;
       switchView("schemes", false);
-      renderIntentFilters();
-      renderSideFilters();
-      renderSchemePositionFilters();
-      renderSchemes();
+      renderAll();
       saveState();
     });
   });
@@ -542,21 +537,20 @@ function renderAbilityChip(archetypeName: string, index: number, abilityName: st
 }
 
 archetypeSearchInput.addEventListener("input", () => {
-  renderArchetypes();
+  renderAll();
   saveState();
 });
 
 archetypeSearchClear.addEventListener("click", () => {
   archetypeSearchInput.value = "";
-  renderArchetypes();
+  renderAll();
   saveState();
 });
 
 archetypeClearFilters.addEventListener("click", () => {
   activePosition = null;
   archetypeSearchInput.value = "";
-  renderPositionFilters();
-  renderArchetypes();
+  renderAll();
   saveState();
 });
 
@@ -570,8 +564,7 @@ function renderIntentFilters(): void {
     chip.textContent = intent.label;
     chip.addEventListener("click", () => {
       activeIntent = activeIntent === intent ? null : intent;
-      renderIntentFilters();
-      renderSchemes();
+      renderAll();
       saveState();
     });
     if (activeIntent === intent) chip.classList.add("active");
@@ -588,9 +581,7 @@ function renderSideFilters(): void {
     chip.textContent = side;
     chip.addEventListener("click", () => {
       activeSide = activeSide === side ? null : side;
-      renderSideFilters();
-      renderSchemePositionFilters();
-      renderSchemes();
+      renderAll();
       saveState();
     });
     if (activeSide === side) chip.classList.add("active");
@@ -611,8 +602,7 @@ function renderSchemePositionFilters(): void {
     chip.textContent = position;
     chip.addEventListener("click", () => {
       activeSchemePosition = activeSchemePosition === position ? null : position;
-      renderSchemePositionFilters();
-      renderSchemes();
+      renderAll();
       saveState();
     });
     if (activeSchemePosition === position) chip.classList.add("active");
@@ -665,7 +655,7 @@ function renderSchemes(): void {
       } else {
         expandedSchemeArchetypes.add(key);
       }
-      renderSchemes();
+      renderAll();
     });
   });
 
@@ -677,7 +667,7 @@ function renderSchemes(): void {
       } else {
         expandedSlots.add(slotKey);
       }
-      renderSchemes();
+      renderAll();
     });
   });
 }
@@ -739,13 +729,13 @@ function renderSchemeArchetypeChip(schemeName: string, si: number, sli: number, 
 }
 
 schemeSearchInput.addEventListener("input", () => {
-  renderSchemes();
+  renderAll();
   saveState();
 });
 
 schemeSearchClear.addEventListener("click", () => {
   schemeSearchInput.value = "";
-  renderSchemes();
+  renderAll();
   saveState();
 });
 
@@ -754,17 +744,20 @@ schemeClearFilters.addEventListener("click", () => {
   activeSchemePosition = null;
   activeIntent = null;
   schemeSearchInput.value = "";
-  renderIntentFilters();
-  renderSideFilters();
-  renderSchemePositionFilters();
-  renderSchemes();
+  renderAll();
   saveState();
 });
 
+const HTML_ESCAPE_MAP: Record<string, string> = {
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "'": "&#39;",
+};
+
 function escapeHtml(str: string): string {
-  const div = document.createElement("div");
-  div.textContent = str;
-  return div.innerHTML;
+  return str.replace(/[&<>"']/g, (ch) => HTML_ESCAPE_MAP[ch]);
 }
 
 function highlightMatch(text: string, query: string): string {
