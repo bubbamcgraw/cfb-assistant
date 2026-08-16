@@ -10,6 +10,10 @@
   --chip-bg: #eef0f4;
   --chip-active-bg: #1a1d21;
   --chip-active-text: #ffffff;
+  --tier-bronze: #b06a3a;
+  --tier-silver: #94a0ac;
+  --tier-gold: #cc9a1f;
+  --tier-platinum: #5aa9b0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -262,11 +266,96 @@ main {
 .type-badge.PHYSICAL { background: var(--physical); }
 .type-badge.MENTAL { background: var(--mental); }
 
+.ability-alt-names {
+  margin-top: -0.15rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-style: italic;
+}
+
 .ability-desc {
   margin: 0.35rem 0 0.5rem;
   color: var(--text);
   font-size: 0.92rem;
   line-height: 1.35;
+}
+
+.ability-levels {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.ability-level {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.5rem 0.65rem;
+}
+
+.ability-level-top {
+  display: flex;
+  align-items: center;
+}
+
+.tier-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  color: #fff;
+}
+
+.tier-badge.BRONZE { background: var(--tier-bronze); }
+.tier-badge.SILVER { background: var(--tier-silver); }
+.tier-badge.GOLD { background: var(--tier-gold); }
+.tier-badge.PLATINUM { background: var(--tier-platinum); }
+
+.ability-level-desc {
+  margin: 0.35rem 0;
+  color: var(--text);
+  font-size: 0.88rem;
+  line-height: 1.35;
+}
+
+.requirement-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.requirement-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.requirement-row.requirement-empty {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-style: italic;
+}
+
+.requirement-positions {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.stat-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.stat-chip {
+  font-size: 0.72rem;
+  color: var(--text);
+  background: var(--chip-bg);
+  padding: 0.12rem 0.45rem;
+  border-radius: 6px;
 }
 
 .tag-row {

@@ -1,13 +1,45 @@
 type AbilityType = "PHYSICAL" | "MENTAL";
+type AbilityTier = "BRONZE" | "SILVER" | "GOLD" | "PLATINUM";
 type Side = "OFFENSE" | "DEFENSE";
 type View = "abilities" | "archetypes" | "schemes";
 type ThemeMode = "auto" | "light" | "dark";
 
+const ABILITY_TIER_ORDER: AbilityTier[] = ["BRONZE", "SILVER", "GOLD", "PLATINUM"];
+
+interface StatRequirement {
+  stat: string; // e.g. "SPEED", "AGILITY", "STRENGTH", "AWARENESS"
+  value: number;
+}
+
+// One way to hit a given tier: all listed stats must be met (AND). Multiple
+// entries in a level's `requirements` array are alternative ways (OR) to hit
+// that tier — e.g. the same position/ability pair can have different
+// thresholds per archetype.
+// `positions` scopes this requirement set to specific positions; omitted/empty
+// means it applies regardless of position. `archetype` optionally labels which
+// archetype this particular path corresponds to, when positions alone don't
+// disambiguate (e.g. QB Downhill differs between Pure Runner and Dual Threat).
+interface PositionRequirement {
+  positions?: string[];
+  archetype?: string;
+  stats: StatRequirement[];
+}
+
+interface AbilityLevel {
+  level: AbilityTier;
+  description: string;
+  requirements: PositionRequirement[];
+}
+
 interface Ability {
   type: AbilityType;
   name: string;
-  description: string;
+  // Some abilities are displayed under a different name depending on where
+  // you look in-game (e.g. patch notes vs. in-game UI). `alternateNames`
+  // records those so search and archetype ability-chip lookups still resolve.
+  alternateNames?: string[];
   tags: string[];
+  levels: AbilityLevel[];
 }
 
 interface Archetype {
@@ -176,6 +208,11 @@ Promise.all([
   archetypes = archetypesData;
   schemes = schemesData;
   abilityByName = new Map(abilities.map((a) => [a.name, a]));
+  abilities.forEach((a) => {
+    (a.alternateNames || []).forEach((alt) => {
+      if (!abilityByName.has(alt)) abilityByName.set(alt, a);
+    });
+  });
 
   archetypesByName = new Map();
   archetypes.forEach((a) => {
@@ -368,6 +405,57 @@ function groupKeyForAbility(a: Ability): string {
   return a.tags && a.tags.length > 0 ? a.tags[0] : a.type;
 }
 
+function statLabel(stat: string): string {
+  return stat.charAt(0) + stat.slice(1).toLowerCase().replace(/_/g, " ");
+}
+
+// Requirement sets scoped to specific positions are only shown when relevant to
+// the given positions (or always, when rendering the ability in isolation).
+function relevantRequirements(requirements: PositionRequirement[], positions?: string[]): PositionRequirement[] {
+  if (!positions || positions.length === 0) return requirements;
+  const scoped = requirements.filter((r) => !r.positions || r.positions.length === 0 || r.positions.some((p) => positions.includes(p)));
+  return scoped.length > 0 ? scoped : requirements;
+}
+
+function renderRequirements(requirements: PositionRequirement[], positions?: string[]): string {
+  const toShow = relevantRequirements(requirements, positions);
+  if (toShow.length === 0) {
+    return `<div class="requirement-row requirement-empty">Requirements TBD</div>`;
+  }
+  return toShow
+    .map((r) => {
+      const posLabel =
+        r.positions && r.positions.length > 0
+          ? `<span class="requirement-positions">${escapeHtml(r.positions.join("/"))}${
+              r.archetype ? ` &middot; ${escapeHtml(r.archetype)}` : ""
+            }</span>`
+          : "";
+      const stats = r.stats
+        .map((s) => `<span class="stat-chip">${escapeHtml(statLabel(s.stat))} ${s.value}</span>`)
+        .join("");
+      return `<div class="requirement-row">${posLabel}<div class="stat-chip-row">${stats}</div></div>`;
+    })
+    .join("");
+}
+
+function renderAbilityLevels(ability: Ability, query: string, positions?: string[]): string {
+  const sorted = [...ability.levels].sort(
+    (a, b) => ABILITY_TIER_ORDER.indexOf(a.level) - ABILITY_TIER_ORDER.indexOf(b.level)
+  );
+  return sorted
+    .map(
+      (lvl) => `
+    <div class="ability-level">
+      <div class="ability-level-top">
+        <span class="tier-badge ${lvl.level}">${lvl.level}</span>
+      </div>
+      <p class="ability-level-desc">${highlightMatch(lvl.description, query)}</p>
+      <div class="requirement-list">${renderRequirements(lvl.requirements, positions)}</div>
+    </div>`
+    )
+    .join("");
+}
+
 function renderAbilities(): void {
   const query = abilitySearchInput.value.trim().toLowerCase();
 
@@ -375,7 +463,9 @@ function renderAbilities(): void {
     if (activeType && a.type !== activeType) return false;
     if (activeTag && !(a.tags || []).includes(activeTag)) return false;
     if (query) {
-      const haystack = `${a.name} ${a.description}`.toLowerCase();
+      const haystack = `${a.name} ${(a.alternateNames || []).join(" ")} ${a.levels
+        .map((l) => l.description)
+        .join(" ")}`.toLowerCase();
       if (!haystack.includes(query)) return false;
     }
     return true;
@@ -410,7 +500,12 @@ function renderAbilities(): void {
         <div class="ability-name">${highlightMatch(a.name, query)}</div>
         <div class="type-badge ${a.type}">${a.type}</div>
       </div>
-      <p class="ability-desc">${highlightMatch(a.description, query)}</p>
+      ${
+        a.alternateNames && a.alternateNames.length > 0
+          ? `<div class="ability-alt-names">aka ${a.alternateNames.map((n) => escapeHtml(n)).join(", ")}</div>`
+          : ""
+      }
+      <div class="ability-levels">${renderAbilityLevels(a, query)}</div>
       <div class="tag-row">
         ${(a.tags || []).map((t) => `<span class="tag">${escapeHtml(t)}</span>`).join("")}
       </div>
@@ -531,7 +626,7 @@ function renderArchetypes(): void {
         </div>
       </div>
       <div class="archetype-abilities">
-        ${a.abilities.map((abilityName) => renderAbilityChip(a.name, i, abilityName)).join("")}
+        ${a.abilities.map((abilityName) => renderAbilityChip(a.name, i, abilityName, a.positions)).join("")}
       </div>
       ${
         usedIn.length > 0
@@ -570,14 +665,14 @@ function renderArchetypes(): void {
   });
 }
 
-function renderAbilityChip(archetypeName: string, index: number, abilityName: string): string {
+function renderAbilityChip(archetypeName: string, index: number, abilityName: string, positions: string[]): string {
   const key = `${archetypeName}-${index}-${abilityName}`;
   const ability = abilityByName.get(abilityName);
   const expanded = expandedAbilities.has(key);
 
   let html = `<button class="ability-chip" data-key="${escapeHtml(key)}">${escapeHtml(abilityName)}</button>`;
   if (expanded && ability) {
-    html += `<div class="ability-chip-desc">${escapeHtml(ability.description)}</div>`;
+    html += `<div class="ability-chip-desc">${renderAbilityLevels(ability, "", positions)}</div>`;
   } else if (expanded) {
     html += `<div class="ability-chip-desc">No matching ability found in abilities.json.</div>`;
   }
