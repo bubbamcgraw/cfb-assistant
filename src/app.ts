@@ -27,7 +27,6 @@ interface PositionRequirement {
 
 interface AbilityLevel {
   level: AbilityTier;
-  description: string;
   requirements: PositionRequirement[];
 }
 
@@ -39,6 +38,7 @@ interface Ability {
   // records those so search and archetype ability-chip lookups still resolve.
   alternateNames?: string[];
   tags: string[];
+  description: string;
   levels: AbilityLevel[];
 }
 
@@ -438,7 +438,7 @@ function renderRequirements(requirements: PositionRequirement[], positions?: str
     .join("");
 }
 
-function renderAbilityLevels(ability: Ability, query: string, positions?: string[]): string {
+function renderAbilityLevels(ability: Ability, positions?: string[]): string {
   const sorted = [...ability.levels].sort(
     (a, b) => ABILITY_TIER_ORDER.indexOf(a.level) - ABILITY_TIER_ORDER.indexOf(b.level)
   );
@@ -449,7 +449,6 @@ function renderAbilityLevels(ability: Ability, query: string, positions?: string
       <div class="ability-level-top">
         <span class="tier-badge ${lvl.level}">${lvl.level}</span>
       </div>
-      <p class="ability-level-desc">${highlightMatch(lvl.description, query)}</p>
       <div class="requirement-list">${renderRequirements(lvl.requirements, positions)}</div>
     </div>`
     )
@@ -463,9 +462,7 @@ function renderAbilities(): void {
     if (activeType && a.type !== activeType) return false;
     if (activeTag && !(a.tags || []).includes(activeTag)) return false;
     if (query) {
-      const haystack = `${a.name} ${(a.alternateNames || []).join(" ")} ${a.levels
-        .map((l) => l.description)
-        .join(" ")}`.toLowerCase();
+      const haystack = `${a.name} ${(a.alternateNames || []).join(" ")} ${a.description}`.toLowerCase();
       if (!haystack.includes(query)) return false;
     }
     return true;
@@ -505,7 +502,8 @@ function renderAbilities(): void {
           ? `<div class="ability-alt-names">aka ${a.alternateNames.map((n) => escapeHtml(n)).join(", ")}</div>`
           : ""
       }
-      <div class="ability-levels">${renderAbilityLevels(a, query)}</div>
+      <p class="ability-desc">${highlightMatch(a.description, query)}</p>
+      <div class="ability-levels">${renderAbilityLevels(a)}</div>
       <div class="tag-row">
         ${(a.tags || []).map((t) => `<span class="tag">${escapeHtml(t)}</span>`).join("")}
       </div>
@@ -672,7 +670,7 @@ function renderAbilityChip(archetypeName: string, index: number, abilityName: st
 
   let html = `<button class="ability-chip" data-key="${escapeHtml(key)}">${escapeHtml(abilityName)}</button>`;
   if (expanded && ability) {
-    html += `<div class="ability-chip-desc">${renderAbilityLevels(ability, "", positions)}</div>`;
+    html += `<div class="ability-chip-desc"><p class="ability-desc">${escapeHtml(ability.description)}</p>${renderAbilityLevels(ability, positions)}</div>`;
   } else if (expanded) {
     html += `<div class="ability-chip-desc">No matching ability found in abilities.json.</div>`;
   }

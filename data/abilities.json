@@ -5,10 +5,10 @@
     "tags": [
       "GENERAL"
     ],
+    "description": "Reduces the chance of stumbling or being knocked off balance by a hit stick.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["TE"],
@@ -24,17 +24,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Reduces the chance of stumbling or being knocked off balance by a hit stick.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -45,10 +42,10 @@
     "tags": [
       "GENERAL"
     ],
+    "description": "Reduces fatigue buildup and speeds up stamina recovery.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["RB", "WR", "TE"],
@@ -58,7 +55,6 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["RB", "WR"],
@@ -73,7 +69,6 @@
       },
       {
         "level": "GOLD",
-        "description": "Reduces fatigue buildup and speeds up stamina recovery.",
         "requirements": [
           {
             "positions": ["RB", "WR"],
@@ -83,7 +78,6 @@
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -94,10 +88,10 @@
     "tags": [
       "GENERAL"
     ],
+    "description": "Reduces the wear-and-tear penalty from heavy usage over a game.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["QB", "TE", "FS", "SS", "OG", "C", "WILL"],
@@ -111,7 +105,6 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["QB", "TE", "FS", "SS", "OG", "C"],
@@ -125,7 +118,6 @@
       },
       {
         "level": "GOLD",
-        "description": "Reduces the wear-and-tear penalty from heavy usage over a game.",
         "requirements": [
           {
             "positions": ["QB", "TE", "FS", "SS", "OG", "C"],
@@ -139,7 +131,6 @@
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -150,10 +141,10 @@
     "tags": [
       "PASSING"
     ],
+    "description": "Improves ball-fake quality on play-action and pump fakes.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["QB"],
@@ -163,17 +154,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves ball-fake quality on play-action and pump fakes.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -184,15 +172,14 @@
     "tags": [
       "PASSING"
     ],
+    "description": "Improves throw accuracy when standing in a clean pocket with no pressure.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["QB"],
@@ -202,12 +189,10 @@
       },
       {
         "level": "GOLD",
-        "description": "Improves throw accuracy when standing in a clean pocket with no pressure.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -218,25 +203,22 @@
     "tags": [
       "PASSING"
     ],
+    "description": "Improves agility for maneuvering around the pocket to avoid pressure.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves agility for maneuvering around the pocket to avoid pressure.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -247,25 +229,22 @@
     "tags": [
       "PASSING"
     ],
+    "description": "Greatly improves accuracy on off-platform throws (across the body or on the back foot) to receivers up to 40 yards downfield.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Greatly improves accuracy on off-platform throws (across the body or on the back foot) to receivers up to 40 yards downfield.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -276,10 +255,10 @@
     "tags": [
       "PASSING"
     ],
+    "description": "Improves the chance to break free from a sack attempt.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["QB"],
@@ -289,17 +268,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves the chance to break free from a sack attempt.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -310,10 +286,10 @@
     "tags": [
       "PASSING"
     ],
+    "description": "Improves resistance to pressure while throwing on the run.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["QB"],
@@ -323,17 +299,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves resistance to pressure while throwing on the run.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -344,10 +317,10 @@
     "tags": [
       "PASSING"
     ],
+    "description": "Improves resistance to pressure while standing in the pocket.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["QB"],
@@ -357,17 +330,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves resistance to pressure while standing in the pocket.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -378,10 +348,10 @@
     "tags": [
       "PASSING"
     ],
+    "description": "Improves accuracy when throwing to an open receiver with feet set in a clean pocket.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["QB"],
@@ -391,17 +361,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves accuracy when throwing to an open receiver with feet set in a clean pocket.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -412,25 +379,22 @@
     "tags": [
       "PASSING"
     ],
+    "description": "Improves ball security when sacked or when throwing.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves ball security when sacked or when throwing.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -441,10 +405,10 @@
     "tags": [
       "PASSING"
     ],
+    "description": "Improves speed and throw accuracy on option pitches.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["QB"],
@@ -454,17 +418,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves speed and throw accuracy on option pitches.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -475,25 +436,22 @@
     "tags": [
       "PASSING"
     ],
+    "description": "Improves accuracy on throws made while on the run outside the pocket.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves accuracy on throws made while on the run outside the pocket.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -504,10 +462,10 @@
     "tags": [
       "PASSING"
     ],
+    "description": "Improves accuracy when throwing before the receiver breaks on their route.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["QB"],
@@ -517,7 +475,6 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["QB"],
@@ -527,12 +484,10 @@
       },
       {
         "level": "GOLD",
-        "description": "Improves accuracy when throwing before the receiver breaks on their route.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -543,25 +498,22 @@
     "tags": [
       "RUSHING"
     ],
+    "description": "Improves the chance to break tackles.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves the chance to break tackles.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -572,10 +524,10 @@
     "tags": [
       "RUSHING"
     ],
+    "description": "Improves the effectiveness of the stiff arm move.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["RB"],
@@ -585,17 +537,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves the effectiveness of the stiff arm move.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -606,10 +555,10 @@
     "tags": [
       "RUSHING"
     ],
+    "description": "Reduces the speed lost when cutting.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["QB"],
@@ -629,17 +578,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Reduces the speed lost when cutting.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -650,10 +596,10 @@
     "tags": [
       "RUSHING"
     ],
+    "description": "Improves the effectiveness of the juke move.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["RB"],
@@ -663,7 +609,6 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["WR"],
@@ -674,7 +619,6 @@
       },
       {
         "level": "GOLD",
-        "description": "Improves the effectiveness of the juke move.",
         "requirements": [
           {
             "positions": ["WR"],
@@ -685,7 +629,6 @@
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["QB"],
@@ -702,10 +645,10 @@
     "tags": [
       "RUSHING"
     ],
+    "description": "Improves the effectiveness of the spin move.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["RB"],
@@ -726,7 +669,6 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["WR"],
@@ -737,12 +679,10 @@
       },
       {
         "level": "GOLD",
-        "description": "Improves the effectiveness of the spin move.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -753,10 +693,10 @@
     "tags": [
       "RUSHING"
     ],
+    "description": "Improves the chance to break tackles once the ball carrier reaches max speed.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["QB"],
@@ -771,17 +711,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves the chance to break tackles once the ball carrier reaches max speed.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -793,10 +730,10 @@
     "tags": [
       "RUSHING"
     ],
+    "description": "Increases fatigue dealt to a defender who is run through on a tackle attempt.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["TE"],
@@ -810,17 +747,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Increases fatigue dealt to a defender who is run through on a tackle attempt.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -831,25 +765,22 @@
     "tags": [
       "RUSHING"
     ],
+    "description": "Improves ball security, reducing fumble chance.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves ball security, reducing fumble chance.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -860,10 +791,10 @@
     "tags": [
       "RECEIVING"
     ],
+    "description": "Improves catch chance on contested jump balls thrown more than 10 yards downfield or in the end zone.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["TE"],
@@ -873,17 +804,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves catch chance on contested jump balls thrown more than 10 yards downfield or in the end zone.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -894,10 +822,10 @@
     "tags": [
       "RECEIVING"
     ],
+    "description": "Improves route running against man coverage and catching when lined up in the backfield.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["RB"],
@@ -908,17 +836,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves route running against man coverage and catching when lined up in the backfield.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -929,10 +854,10 @@
     "tags": [
       "RECEIVING"
     ],
+    "description": "Improves the chance to secure diving catches.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["FS", "SS"],
@@ -942,17 +867,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves the chance to secure diving catches.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -963,10 +885,10 @@
     "tags": [
       "RECEIVING"
     ],
+    "description": "Reduces drops and prevents the ball from being knocked out on contact.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["TE"],
@@ -976,17 +898,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Reduces drops and prevents the ball from being knocked out on contact.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -997,10 +916,10 @@
     "tags": [
       "RECEIVING"
     ],
+    "description": "Improves cut quality on routes run against man coverage.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["WR"],
@@ -1016,7 +935,6 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["WR"],
@@ -1027,12 +945,10 @@
       },
       {
         "level": "GOLD",
-        "description": "Improves cut quality on routes run against man coverage.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -1043,10 +959,10 @@
     "tags": [
       "RECEIVING"
     ],
+    "description": "Improves the chance to win double-move routes against single man coverage.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["WR"],
@@ -1057,17 +973,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves the chance to win double-move routes against single man coverage.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -1078,25 +991,22 @@
     "tags": [
       "RECEIVING"
     ],
+    "description": "Improves the ability to beat press coverage at the line of scrimmage.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves the ability to beat press coverage at the line of scrimmage.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -1107,10 +1017,10 @@
     "tags": [
       "RECEIVING"
     ],
+    "description": "Improves release speed off the line when not being pressed.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["RB"],
@@ -1126,17 +1036,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves release speed off the line when not being pressed.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -1147,10 +1054,10 @@
     "tags": [
       "BLOCKING"
     ],
+    "description": "Improves cut-block effectiveness.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["FB"],
@@ -1161,17 +1068,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves cut-block effectiveness.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -1182,10 +1086,10 @@
     "tags": [
       "BLOCKING"
     ],
+    "description": "Improves pass blocking inside 10 yards of the first-down marker.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["FB"],
@@ -1201,17 +1105,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves pass blocking inside 10 yards of the first-down marker.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -1222,10 +1123,10 @@
     "tags": [
       "BLOCKING"
     ],
+    "description": "Improves pass-block movement on standard dropback pass plays.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["OT", "C", "OG"],
@@ -1238,12 +1139,10 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves pass-block movement on standard dropback pass plays.",
         "requirements": [
           {
             "positions": ["OT"],
@@ -1257,7 +1156,6 @@
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["OT"],
@@ -1277,10 +1175,10 @@
     "tags": [
       "BLOCKING"
     ],
+    "description": "Improves option blocking near the line of scrimmage.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["OT", "OG"],
@@ -1290,7 +1188,6 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["OT", "OG"],
@@ -1300,12 +1197,10 @@
       },
       {
         "level": "GOLD",
-        "description": "Improves option blocking near the line of scrimmage.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -1316,10 +1211,10 @@
     "tags": [
       "BLOCKING"
     ],
+    "description": "Improves run blocking on inside runs near the line of scrimmage.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["OG", "C"],
@@ -1329,7 +1224,6 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["OG"],
@@ -1340,12 +1234,10 @@
       },
       {
         "level": "GOLD",
-        "description": "Improves run blocking on inside runs near the line of scrimmage.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -1356,10 +1248,10 @@
     "tags": [
       "BLOCKING"
     ],
+    "description": "Improves blocking on screen plays, including the chance to pancake a defender.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["FB"],
@@ -1374,17 +1266,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves blocking on screen plays, including the chance to pancake a defender.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -1395,10 +1284,10 @@
     "tags": [
       "BLOCKING"
     ],
+    "description": "Improves play-action pass blocking on 1st down or when there are fewer than 3 yards to go.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["OT", "C"],
@@ -1408,17 +1297,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves play-action pass blocking on 1st down or when there are fewer than 3 yards to go.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -1429,10 +1315,10 @@
     "tags": [
       "BLOCKING"
     ],
+    "description": "Improves blocking once the lineman reaches the second level of the defense.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["FB"],
@@ -1447,7 +1333,6 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["OG", "C"],
@@ -1457,7 +1342,6 @@
       },
       {
         "level": "GOLD",
-        "description": "Improves blocking once the lineman reaches the second level of the defense.",
         "requirements": [
           {
             "positions": ["OG", "C"],
@@ -1467,7 +1351,6 @@
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -1478,10 +1361,10 @@
     "tags": [
       "BLOCKING"
     ],
+    "description": "Improves first-level run blocking on outside runs.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["OT", "OG"],
@@ -1491,7 +1374,6 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["OT", "OG"],
@@ -1501,7 +1383,6 @@
       },
       {
         "level": "GOLD",
-        "description": "Improves first-level run blocking on outside runs.",
         "requirements": [
           {
             "positions": ["TE"],
@@ -1512,7 +1393,6 @@
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -1523,10 +1403,10 @@
     "tags": [
       "BLOCKING"
     ],
+    "description": "Reduces the chance of being shed laterally on run or pass plays.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["FB"],
@@ -1546,17 +1426,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Reduces the chance of being shed laterally on run or pass plays.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -1567,10 +1444,10 @@
     "tags": [
       "BLOCKING"
     ],
+    "description": "Adds fatigue to a defender who gets pancaked on a run play.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["C", "OG"],
@@ -1581,7 +1458,6 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["OG"],
@@ -1592,12 +1468,10 @@
       },
       {
         "level": "GOLD",
-        "description": "Adds fatigue to a defender who gets pancaked on a run play.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -1608,10 +1482,10 @@
     "tags": [
       "BLOCKING"
     ],
+    "description": "Adds fatigue to a defender who gets pancaked on a pass play.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["OT", "C"],
@@ -1621,17 +1495,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Adds fatigue to a defender who gets pancaked on a pass play.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -1642,10 +1513,10 @@
     "tags": [
       "BLOCKING"
     ],
+    "description": "Improves movement when pulling as a blocker.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["OT", "OG"],
@@ -1655,17 +1526,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves movement when pulling as a blocker.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -1677,10 +1545,10 @@
       "DEFENSE",
       "TACKLING"
     ],
+    "description": "Improves the effectiveness of the hit stick tackle.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["FS", "SS"],
@@ -1698,17 +1566,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves the effectiveness of the hit stick tackle.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -1720,10 +1585,10 @@
       "DEFENSE",
       "TACKLING"
     ],
+    "description": "Prevents broken tackles during a sack attempt.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["LEDGE", "REDGE"],
@@ -1749,17 +1614,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Prevents broken tackles during a sack attempt.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -1771,10 +1633,10 @@
       "DEFENSE",
       "TACKLING"
     ],
+    "description": "Improves the chance to force a fumble on a tackle and prevents broken tackles when breaking up a catch.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["FS", "SS", "CB"],
@@ -1793,17 +1655,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves the chance to force a fumble on a tackle and prevents broken tackles when breaking up a catch.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -1814,10 +1673,10 @@
     "tags": [
       "DEFENSE"
     ],
+    "description": "Generates pressure on the quarterback when unblocked and rushing from in front.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["LEDGE", "REDGE", "DT"],
@@ -1830,17 +1689,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Generates pressure on the quarterback when unblocked and rushing from in front.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -1852,10 +1708,10 @@
       "DEFENSE",
       "TACKLING"
     ],
+    "description": "Prevents broken tackles and fake-outs (jukes and spins) while tackling.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["SAM", "FS", "SS", "MIKE", "WILL", "CB"],
@@ -1865,7 +1721,6 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["SAM"],
@@ -1875,12 +1730,10 @@
       },
       {
         "level": "GOLD",
-        "description": "Prevents broken tackles and fake-outs (jukes and spins) while tackling.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -1891,10 +1744,10 @@
     "tags": [
       "DEFENSE"
     ],
+    "description": "Improves the chance to beat an impact (lead) block.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["FS", "SS"],
@@ -1908,17 +1761,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves the chance to beat an impact (lead) block.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["FS", "SS"],
@@ -1934,10 +1784,10 @@
     "tags": [
       "DEFENSE"
     ],
+    "description": "Improves block shedding against inside runs, including double teams.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["LEDGE", "REDGE", "DT"],
@@ -1947,17 +1797,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves block shedding against inside runs, including double teams.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -1968,25 +1815,22 @@
     "tags": [
       "DEFENSE"
     ],
+    "description": "Improves block shedding against outside runs, including double teams.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves block shedding against outside runs, including double teams.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -1997,25 +1841,22 @@
     "tags": [
       "DEFENSE"
     ],
+    "description": "Improves block shedding against option runs, including double teams.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves block shedding against option runs, including double teams.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2026,10 +1867,10 @@
     "tags": [
       "DEFENSE"
     ],
+    "description": "Improves pass-rush block shedding, especially on 3rd and 4th down.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["LEDGE", "REDGE"],
@@ -2044,17 +1885,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves pass-rush block shedding, especially on 3rd and 4th down.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2065,10 +1903,10 @@
     "tags": [
       "DEFENSE"
     ],
+    "description": "Improves the ability to shed blocks laterally on any play.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["LEDGE", "REDGE", "DT"],
@@ -2088,17 +1926,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves the ability to shed blocks laterally on any play.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2110,10 +1945,10 @@
       "DEFENSE",
       "TACKLING"
     ],
+    "description": "Greatly increases wear-and-tear fatigue dealt to opponents on tackles.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["SAM", "FS", "SS"],
@@ -2127,17 +1962,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Greatly increases wear-and-tear fatigue dealt to opponents on tackles.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2148,10 +1980,10 @@
     "tags": [
       "DEFENSE"
     ],
+    "description": "Improves timing when jumping the snap count.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["LEDGE"],
@@ -2162,17 +1994,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves timing when jumping the snap count.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2184,10 +2013,10 @@
       "DEFENSE",
       "COVERAGE"
     ],
+    "description": "Fatigues receivers and slows their acceleration on zone chucks at the line of scrimmage.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["SAM", "MIKE", "WILL"],
@@ -2197,17 +2026,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Fatigues receivers and slows their acceleration on zone chucks at the line of scrimmage.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2219,15 +2045,14 @@
       "DEFENSE",
       "COVERAGE"
     ],
+    "description": "Improves the ability to press receivers at the line of scrimmage.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["CB"],
@@ -2237,12 +2062,10 @@
       },
       {
         "level": "GOLD",
-        "description": "Improves the ability to press receivers at the line of scrimmage.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2254,10 +2077,10 @@
       "DEFENSE",
       "COVERAGE"
     ],
+    "description": "Improves interception chance and stamina during interception returns.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["FS", "SS"],
@@ -2271,7 +2094,6 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["SAM"],
@@ -2281,7 +2103,6 @@
       },
       {
         "level": "GOLD",
-        "description": "Improves interception chance and stamina during interception returns.",
         "requirements": [
           {
             "positions": ["CB"],
@@ -2291,7 +2112,6 @@
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2303,10 +2123,10 @@
       "DEFENSE",
       "COVERAGE"
     ],
+    "description": "Improves reaction to route cuts in man coverage.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["CB"],
@@ -2316,7 +2136,6 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["CB"],
@@ -2326,12 +2145,10 @@
       },
       {
         "level": "GOLD",
-        "description": "Improves reaction to route cuts in man coverage.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2343,10 +2160,10 @@
       "DEFENSE",
       "COVERAGE"
     ],
+    "description": "Improves closing speed and movement in man or zone coverage.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["FS", "SS"],
@@ -2360,7 +2177,6 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["FS", "SS", "CB"],
@@ -2370,7 +2186,6 @@
       },
       {
         "level": "GOLD",
-        "description": "Improves closing speed and movement in man or zone coverage.",
         "requirements": [
           {
             "positions": ["FS", "SS", "CB"],
@@ -2380,7 +2195,6 @@
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["FS", "SS", "CB"],
@@ -2397,10 +2211,10 @@
       "DEFENSE",
       "COVERAGE"
     ],
+    "description": "Improves the break on the ball after a pass is thrown.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["FS", "SS", "CB"],
@@ -2410,17 +2224,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves the break on the ball after a pass is thrown.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2431,10 +2242,10 @@
     "tags": [
       "KICKING"
     ],
+    "description": "Improves accuracy and timing on field goals of 50+ yards.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["K"],
@@ -2444,7 +2255,6 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["P"],
@@ -2454,12 +2264,10 @@
       },
       {
         "level": "GOLD",
-        "description": "Improves accuracy and timing on field goals of 50+ yards.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2470,10 +2278,10 @@
     "tags": [
       "KICKING"
     ],
+    "description": "Removes the penalty for kicking the ball out of the back of the end zone.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["K", "P"],
@@ -2483,17 +2291,14 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Removes the penalty for kicking the ball out of the back of the end zone.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2504,10 +2309,10 @@
     "tags": [
       "KICKING"
     ],
+    "description": "Improves punt accuracy when punting from midfield or closer.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": [
           {
             "positions": ["K"],
@@ -2517,12 +2322,10 @@
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves punt accuracy when punting from midfield or closer.",
         "requirements": [
           {
             "positions": ["P"],
@@ -2532,7 +2335,6 @@
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2543,25 +2345,22 @@
     "tags": [
       "KICKING"
     ],
+    "description": "Improves punt timing when punting from the kicking team's own 10-yard line or further back.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves punt timing when punting from the kicking team's own 10-yard line or further back.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2572,25 +2371,22 @@
     "tags": [
       "KICKING"
     ],
+    "description": "Improves accuracy and timing on short field goals.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves accuracy and timing on short field goals.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2599,25 +2395,22 @@
     "type": "MENTAL",
     "name": "Road Dog",
     "tags": [],
+    "description": "Increases composure gained while playing on the road.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Increases composure gained while playing on the road.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2626,25 +2419,22 @@
     "type": "MENTAL",
     "name": "Winning Time",
     "tags": [],
+    "description": "Increases composure gained in the final 2 minutes of a game decided by 10 points or less.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Increases composure gained in the final 2 minutes of a game decided by 10 points or less.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2653,25 +2443,22 @@
     "type": "MENTAL",
     "name": "Fan Favorite",
     "tags": [],
+    "description": "Increases composure gained while playing at home.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Increases composure gained while playing at home.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2680,25 +2467,22 @@
     "type": "MENTAL",
     "name": "Headstrong",
     "tags": [],
+    "description": "Resists failed pre-play adjustments and protects composure from crowd noise.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Resists failed pre-play adjustments and protects composure from crowd noise.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2707,25 +2491,22 @@
     "type": "MENTAL",
     "name": "Field General",
     "tags": [],
+    "description": "Reveals pre-snap blitzes, coverage shells, and disguised coverages.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Reveals pre-snap blitzes, coverage shells, and disguised coverages.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2734,25 +2515,22 @@
     "type": "MENTAL",
     "name": "Clearheaded",
     "tags": [],
+    "description": "Protects against composure loss.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Protects against composure loss.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2761,25 +2539,22 @@
     "type": "MENTAL",
     "name": "Clutch Kicker",
     "tags": [],
+    "description": "Improves accuracy and timing, and removes icing effects, on field goals in the final 2 minutes.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves accuracy and timing, and removes icing effects, on field goals in the final 2 minutes.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2788,25 +2563,22 @@
     "type": "MENTAL",
     "name": "The Natural",
     "tags": [],
+    "description": "Removes the effects of bad weather on play.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Removes the effects of bad weather on play.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2815,25 +2587,22 @@
     "type": "MENTAL",
     "name": "Team Player",
     "tags": [],
+    "description": "Removes the rating penalty for playing out of position.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Removes the rating penalty for playing out of position.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2842,25 +2611,22 @@
     "type": "MENTAL",
     "name": "Best Friend",
     "tags": [],
+    "description": "Increases the QB's composure when this receiver makes a 1st-down catch on 3rd or 4th down.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Increases the QB's composure when this receiver makes a 1st-down catch on 3rd or 4th down.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2869,25 +2635,22 @@
     "type": "MENTAL",
     "name": "DL Rally",
     "tags": [],
+    "description": "Increases a defensive lineman's composure after recording a sack.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Increases a defensive lineman's composure after recording a sack.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2896,25 +2659,22 @@
     "type": "MENTAL",
     "name": "OL Rally",
     "tags": [],
+    "description": "Increases an offensive lineman's composure after a pancake block.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Increases an offensive lineman's composure after a pancake block.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2923,25 +2683,22 @@
     "type": "MENTAL",
     "name": "Legion",
     "tags": [],
+    "description": "Increases a defensive back's composure after an interception or pass breakup.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Increases a defensive back's composure after an interception or pass breakup.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2950,25 +2707,22 @@
     "type": "MENTAL",
     "name": "Instinct",
     "tags": [],
+    "description": "Improves reaction time to run plays on defense.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Improves reaction time to run plays on defense.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -2977,25 +2731,22 @@
     "type": "MENTAL",
     "name": "Adrenaline",
     "tags": [],
+    "description": "Speeds up recovery from wear-and-tear fatigue while on the sideline.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Speeds up recovery from wear-and-tear fatigue while on the sideline.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]
@@ -3004,25 +2755,22 @@
     "type": "MENTAL",
     "name": "Rollercoaster",
     "tags": [],
+    "description": "Increases the swings, positive and negative, in composure gain and loss.",
     "levels": [
       {
         "level": "BRONZE",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "SILVER",
-        "description": "TODO",
         "requirements": []
       },
       {
         "level": "GOLD",
-        "description": "Increases the swings, positive and negative, in composure gain and loss.",
         "requirements": []
       },
       {
         "level": "PLATINUM",
-        "description": "TODO",
         "requirements": []
       }
     ]

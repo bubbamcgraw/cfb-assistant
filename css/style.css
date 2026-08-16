@@ -312,13 +312,6 @@ main {
 .tier-badge.GOLD { background: var(--tier-gold); }
 .tier-badge.PLATINUM { background: var(--tier-platinum); }
 
-.ability-level-desc {
-  margin: 0.35rem 0;
-  color: var(--text);
-  font-size: 0.88rem;
-  line-height: 1.35;
-}
-
 .requirement-list {
   display: flex;
   flex-direction: column;
